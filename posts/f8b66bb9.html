@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>EChats图表的使用 | Hexo</title><meta name="keywords" content="EChats,Vue"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ECharts基本使用获取 Apache EChartsApache ECharts 支持多种下载方式，可以在下一篇教程安装中查看所有方式。这里，我们以从 [jsDelivr](https:&#x2F;&#x2F;www.jsdelivr.com&#x2F;package&#x2F;npm&#x2F;echarts) &#96;CDN 上获取为例，介绍如何快速安装。 在 https:&#x2F;&#x2F;www.jsdelivr.com&#x2F;package&#x2F;npm&#x2F;e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EChats图表的使用">
+<meta property="og:url" content="https://xuesenxu.github.io/posts/f8b66bb9.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ECharts基本使用获取 Apache EChartsApache ECharts 支持多种下载方式，可以在下一篇教程安装中查看所有方式。这里，我们以从 [jsDelivr](https:&#x2F;&#x2F;www.jsdelivr.com&#x2F;package&#x2F;npm&#x2F;echarts) &#96;CDN 上获取为例，介绍如何快速安装。 在 https:&#x2F;&#x2F;www.jsdelivr.com&#x2F;package&#x2F;npm&#x2F;e">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-05T12:37:22.000Z">
+<meta property="article:modified_time" content="2022-09-19T09:28:14.686Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="EChats">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xuesenxu.github.io/posts/f8b66bb9"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'EChats图表的使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-19 17:28:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">EChats图表的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-05T12:37:22.000Z" title="发表于 2022-05-05 20:37:22">2022-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-19T09:28:14.686Z" title="更新于 2022-09-19 17:28:14">2022-09-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/EChats/">EChats</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/EChats/Vue/">Vue</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="EChats图表的使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="ECharts基本使用"><a href="#ECharts基本使用" class="headerlink" title="ECharts基本使用"></a>ECharts基本使用</h2><h3 id="获取-Apache-ECharts"><a href="#获取-Apache-ECharts" class="headerlink" title="获取 Apache ECharts"></a>获取 Apache ECharts</h3><p><code>Apache ECharts</code> 支持多种下载方式，可以在下一篇教程<a target="_blank" rel="noopener" href="https://echarts.apache.org/handbook/zh/basics/download">安装</a>中查看所有方式。这里，我们以从<code> [jsDelivr]</code>(<a target="_blank" rel="noopener" href="https://www.jsdelivr.com/package/npm/echarts">https://www.jsdelivr.com/package/npm/echarts</a>) &#96;CDN 上获取为例，介绍如何快速安装。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://www.jsdelivr.com/package/npm/echarts">https://www.jsdelivr.com/package/npm/echarts</a> 选择 <code>dist/echarts.js</code>，点击并保存为 <code>echarts.js</code> 文件。</p>
+<h3 id="引入Apache-ECharts"><a href="#引入Apache-ECharts" class="headerlink" title="引入Apache ECharts"></a>引入Apache ECharts</h3><p>在刚才保存 <code>echarts.js</code> 的目录新建一个 <code>index.html</code> 文件，内容如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>图表<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./echarts.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>打开这个 <code>index.html</code>，你会看到一片空白。但是不要担心，打开控制台确认没有报错信息，就可以进行下一步。</p>
+<h3 id="绘制一个简单的图表"><a href="#绘制一个简单的图表" class="headerlink" title="绘制一个简单的图表"></a>绘制一个简单的图表</h3><p>在绘图前我们需要为 ECharts 准备一个定义了高宽的 DOM 容器。在刚才的例子 <code>&lt;/head&gt;</code> 之后，添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 为 ECharts 准备一个定义了宽高的 DOM --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 600px;height:400px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就可以通过 <a target="_blank" rel="noopener" href="https://echarts.apache.org//api.html#echarts.init">echarts.init</a> 方法初始化一个 echarts 实例并通过 <a target="_blank" rel="noopener" href="https://echarts.apache.org//api.html#echartsInstance.setOption">setOption</a> 方法生成一个简单的柱状图，下面是完整代码。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>ECharts<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 引入刚刚下载的 ECharts 文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;echarts.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 为 ECharts 准备一个定义了宽高的 DOM --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 600px;height:400px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 注意：</span></span><br><span class="line"><span class="comment">			宽和高必须采用行内式的写法不然不起作用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 基于准备好的dom，初始化echarts实例</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> myChart = echarts.<span class="title function_">init</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;main&#x27;</span>));</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 指定图表的配置项和数据</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> option = &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">title</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">text</span>: <span class="string">&#x27;ECharts 入门示例&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">tooltip</span>: &#123;&#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">legend</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">data</span>: [<span class="string">&#x27;销量&#x27;</span>]</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">xAxis</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">data</span>: [<span class="string">&#x27;衬衫&#x27;</span>, <span class="string">&#x27;羊毛衫&#x27;</span>, <span class="string">&#x27;雪纺衫&#x27;</span>, <span class="string">&#x27;裤子&#x27;</span>, <span class="string">&#x27;高跟鞋&#x27;</span>, <span class="string">&#x27;袜子&#x27;</span>]</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">yAxis</span>: &#123;&#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">series</span>: [</span></span><br><span class="line"><span class="language-javascript">          &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">name</span>: <span class="string">&#x27;销量&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">type</span>: <span class="string">&#x27;bar&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">data</span>: [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">20</span>]</span></span><br><span class="line"><span class="language-javascript">          &#125;</span></span><br><span class="line"><span class="language-javascript">        ]</span></span><br><span class="line"><span class="language-javascript">      &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 使用刚指定的配置项和数据显示图表。</span></span></span><br><span class="line"><span class="language-javascript">      myChart.<span class="title function_">setOption</span>(option,<span class="string">&#x27;dark&#x27;</span>);<span class="comment">//第一个参数是配置项，第二个参数是主题颜色</span></span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>效果如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/039062d359ef47c5a81a13ee9a1f1dc6.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-uVc6gwgR-1651753885854)(../images/image-20220504173227018.png)]"></p>
+<h2 id="在Vue中绘制图表"><a href="#在Vue中绘制图表" class="headerlink" title="在Vue中绘制图表"></a>在Vue中绘制图表</h2><ol>
+<li><p>首先要为图表创建容器，</p>
+<p>在HTML代码中创建元素，这两个元素用来存放图表</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;pieRef&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pie&quot;</span> <span class="attr">class</span>=<span class="string">&quot;main-chart&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;lineRef&quot;</span> <span class="attr">id</span>=<span class="string">&quot;line&quot;</span> <span class="attr">class</span>=<span class="string">&quot;main-chart&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在<code>data</code>中创建两个对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pieChart</span>: &#123;&#125;,</span><br><span class="line"><span class="attr">lineChart</span>: &#123;&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>下面来绘制图表</p>
+<pre><code>        option: &#123;
+            title: &#123;图表标题
+                text: &#39;Referer of a Website&#39;,//图表主标题
+                subtext: &#39;Fake Data&#39;,//图表副标题
+                left: &#39;center&#39;//主副标题的水平位置
+            &#125;,
+            tooltip: &#123;//图表提示框
+                trigger: &#39;item&#39;//触发类型（&#39;item&#39;，数据项图形触发，主要在散点图，
+                               //饼图等无类目轴的图表中使用；&#39;axis&#39;，坐标轴触发，
+                               //主要在柱状图，折线图等会使用类目轴的图表中使用；&#39;none&#39;，不触发。）
+            &#125;,
+            legend: &#123;//对图例组件的相关配置
+                orient: &#39;vertical&#39;,//设置图例的朝向方式，vertical垂直显示，horizontal // 水平显示
+                left: &#39;left&#39;//left属性设置图例在x轴上的位置值有left，center，right；
+                            //top设置在y轴上的位置，值有top、center、bottom
+            &#125;,
+            series: [//一组数值以及他们映射成的图
+                &#123;
+                    name: &#39;Access From&#39;,//需要展示，如图1，图2
+                    type: &#39;pie&#39;,//图表类型：line折线形，bar条状形，pie饼图，scatter散点图，
+                    radius: &#39;50%&#39;,
+                    data: [//要展示的数据
+                        &#123; value: 1048, name: &#39;Search Engine&#39; &#125;,//name某一项，value是某一项的值
+                        &#123; value: 735, name: &#39;Direct&#39; &#125;,
+                        &#123; value: 580, name: &#39;Email&#39; &#125;,
+                        &#123; value: 484, name: &#39;Union Ads&#39; &#125;,
+                        &#123; value: 300, name: &#39;Video Ads&#39; &#125;
+                    ],
+                    emphasis: &#123;//高亮样式，鼠标悬停到某一项时突出显示的样式
+                        itemStyle: &#123;//样式设置
+                            shadowBlur: 10,//阴影亮度
+                            shadowOffsetX: 0,//阴影偏移量
+                            shadowColor: &#39;rgba(0, 0, 0, 0.5)&#39;//阴影颜色
+                        &#125;
+                    &#125;
+                &#125;
+            ]
+        &#125;,
+       // 图表二设置
+        option2: &#123;
+            title: &#123;
+                text: &#39;Stacked Area Chart&#39;
+            &#125;,
+            tooltip: &#123;
+                trigger: &#39;axis&#39;,
+                axisPointer: &#123;
+                    type: &#39;cross&#39;,// 指示器类型（&#39;line&#39; 直线指示器；
+                                  //&#39;shadow&#39; 阴影指示器；&#39;none&#39; 无指示器；
+                                  //&#39;cross&#39; 十字准星指示器。）
+                    label: &#123;
+                        backgroundColor: &#39;#6a7985&#39;//文本标签背景颜色
+                    &#125;
+                &#125;
+            &#125;,
+            legend: &#123;
+                data: [&#39;Email&#39;, &#39;Union Ads&#39;, &#39;Video Ads&#39;, &#39;Direct&#39;, &#39;Search Engine&#39;]
+            &#125;,
+            toolbox: &#123;
+                feature: &#123;
+                saveAsImage: &#123;&#125;
+                &#125;
+            &#125;,
+            grid: &#123;//图标离容器的距离
+                left: &#39;3%&#39;,//图表离容器左侧的距离
+                right: &#39;4%&#39;,//图表离容器右侧的距离
+                bottom: &#39;3%&#39;,//图表离容器底部的距离
+                containLabel: true//防止标签溢出，计算距离时候会计算容器边到标签的距离，
+                                  //否则计算容器边缘到刻度线的距离。
+            &#125;,
+            xAxis: [//对x轴进行设置
+                &#123;
+                    type: &#39;category&#39;,//坐标轴类型
+                    boundaryGap: false,//坐标轴两边留白策略
+                    data: [&#39;Mon&#39;, &#39;Tue&#39;, &#39;Wed&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;]//x轴的标度
+                &#125;
+            ],
+            yAxis: [//对y轴进行设置
+                &#123;
+                type: &#39;value&#39;
+                &#125;
+            ],
+            series: [
+                &#123;
+                    name: &#39;Email&#39;,
+                    type: &#39;line&#39;,
+                    stack: &#39;Total&#39;,
+                    areaStyle: &#123;&#125;,
+                    emphasis: &#123;
+                        focus: &#39;series&#39;
+                    &#125;,
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                &#125;,
+                &#123;
+                    name: &#39;Union Ads&#39;,
+                    type: &#39;line&#39;,
+                    stack: &#39;Total&#39;,
+                    areaStyle: &#123;&#125;,
+                    emphasis: &#123;
+                        focus: &#39;series&#39;
+                    &#125;,
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                &#125;,
+                &#123;
+                    name: &#39;Video Ads&#39;,
+                    type: &#39;line&#39;,
+                    stack: &#39;Total&#39;,
+                    areaStyle: &#123;&#125;,
+                    emphasis: &#123;
+                        focus: &#39;series&#39;
+                    &#125;,
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                    &#125;,
+                &#123;
+                    name: &#39;Direct&#39;,
+                    type: &#39;line&#39;,
+                    stack: &#39;Total&#39;,
+                    areaStyle: &#123;&#125;,
+                    emphasis: &#123;
+                        focus: &#39;series&#39;
+                    &#125;,
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                    &#125;,
+                &#123;
+                    name: &#39;Search Engine&#39;,
+                    type: &#39;line&#39;,
+                    stack: &#39;Total&#39;,
+                    label: &#123;
+                        show: true,
+                        position: &#39;top&#39;
+                    &#125;,
+                    areaStyle: &#123;&#125;,
+                    emphasis: &#123;
+                        focus: &#39;series&#39;
+                    &#125;,
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                &#125;
+            ]
+        &#125;
+</code></pre>
+</li>
+<li><p>注册容器通过<code>init</code>方法初始化一个 <code>echarts </code>实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>:&#123;<span class="comment">//该方法需要在组件渲染时就进行调用</span></span><br><span class="line">    ...</span><br><span class="line">    renderChat () &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">pieChart</span> = echarts.<span class="title function_">init</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;pie&quot;</span>));</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">lineChart</span> = echarts.<span class="title function_">init</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;line&quot;</span>));</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">pieChart</span>.<span class="title function_">setOption</span>(<span class="variable language_">this</span>.<span class="property">option</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">lineChart</span>.<span class="title function_">setOption</span>(<span class="variable language_">this</span>.<span class="property">option2</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>当浏览器的窗口大小发生变化的时候需要对图表重新进行渲染</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resizeHandle () &#123;</span><br><span class="line">  <span class="comment">//实时刷新退表的大小</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">pieChart</span>.<span class="title function_">resize</span>()</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">lineChart</span>.<span class="title function_">resize</span>()</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/32fbec4717884aaa88a5907b60990beb.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-T62XbPye-1651753885855)(../images/image-20220505111535147.png)]"></p>
+<p>图一</p>
+<p><img src="https://img-blog.csdnimg.cn/9870c9d724be4a239e535b2b414cbf08.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-h2pv5iny-1651753885856)(../images/image-20220505112323415.png)]"></p>
+<p>图二</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://XuesenXu.github.io">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xuesenxu.github.io/posts/f8b66bb9.html">https://xuesenxu.github.io/posts/f8b66bb9.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://XuesenXu.github.io" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/EChats/">EChats</a><a class="post-meta__tags" href="/tags/Vue/">Vue</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/77fb6f34.html"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Next.js（一）基础</div></div></a></div><div class="next-post pull-right"><a href="/posts/cb417bc6.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Redux</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/21ff1604.html" title="PC端实现列表懒加载"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">PC端实现列表懒加载</div></div></a></div><div><a href="/posts/eb6b9244.html" title="Vue.config.js配置详解"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-23</div><div class="title">Vue.config.js配置详解</div></div></a></div><div><a href="/posts/d63a8feb.html" title="Vue——video标签实现不静音自动播放"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-25</div><div class="title">Vue——video标签实现不静音自动播放</div></div></a></div><div><a href="/posts/96af32bb.html" title="Vue监视数据原理"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-07</div><div class="title">Vue监视数据原理</div></div></a></div><div><a href="/posts/a972e9b9.html" title="qrcodejs2实现前端生成二维码且实时刷新"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-16</div><div class="title">qrcodejs2实现前端生成二维码且实时刷新</div></div></a></div><div><a href="/posts/2448e183.html" title="$route.matched的作用以及面包屑导航的制作"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-06</div><div class="title">$route.matched的作用以及面包屑导航的制作</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ECharts%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">ECharts基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96-Apache-ECharts"><span class="toc-number">1.1.</span> <span class="toc-text">获取 Apache ECharts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5Apache-ECharts"><span class="toc-number">1.2.</span> <span class="toc-text">引入Apache ECharts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%BE%E8%A1%A8"><span class="toc-number">1.3.</span> <span class="toc-text">绘制一个简单的图表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Vue%E4%B8%AD%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">在Vue中绘制图表</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/21ff1604.html" title="PC端实现列表懒加载"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PC端实现列表懒加载"/></a><div class="content"><a class="title" href="/posts/21ff1604.html" title="PC端实现列表懒加载">PC端实现列表懒加载</a><time datetime="2022-09-17T08:02:21.000Z" title="发表于 2022-09-17 16:02:21">2022-09-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/76b4ccae.html" title="React应用(基于React脚手架)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React应用(基于React脚手架)"/></a><div class="content"><a class="title" href="/posts/76b4ccae.html" title="React应用(基于React脚手架)">React应用(基于React脚手架)</a><time datetime="2022-09-17T07:29:15.000Z" title="发表于 2022-09-17 15:29:15">2022-09-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3bc6d510.html" title="handleTree树状结构化数据"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="handleTree树状结构化数据"/></a><div class="content"><a class="title" href="/posts/3bc6d510.html" title="handleTree树状结构化数据">handleTree树状结构化数据</a><time datetime="2022-09-15T07:06:33.000Z" title="发表于 2022-09-15 15:06:33">2022-09-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/a27093ab.html" title="时间戳转日期且格式化"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="时间戳转日期且格式化"/></a><div class="content"><a class="title" href="/posts/a27093ab.html" title="时间戳转日期且格式化">时间戳转日期且格式化</a><time datetime="2022-08-31T06:59:23.000Z" title="发表于 2022-08-31 14:59:23">2022-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d163c52b.html" title="若依前端实现权限管理"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="若依前端实现权限管理"/></a><div class="content"><a class="title" href="/posts/d163c52b.html" title="若依前端实现权限管理">若依前端实现权限管理</a><time datetime="2022-08-29T07:09:57.000Z" title="发表于 2022-08-29 15:09:57">2022-08-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
