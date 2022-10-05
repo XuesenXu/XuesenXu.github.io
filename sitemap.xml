@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xuesenxu.github.io/posts/83df7274.html</loc>
+    <loc>https://xuesenxu.github.io/posts/6aa9f6d6.html</loc>
     
     <lastmod>2022-10-05</lastmod>
     
@@ -337,6 +337,13 @@
   </url>
   
   <url>
+    <loc>https://xuesenxu.github.io/tags/node/</loc>
+    <lastmod>2022-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xuesenxu.github.io/tags/js/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -345,13 +352,6 @@
   
   <url>
     <loc>https://xuesenxu.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2022-10-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xuesenxu.github.io/tags/node/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -372,14 +372,14 @@
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://xuesenxu.github.io/tags/webpack/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/tags/webpack/</loc>
+    <loc>https://xuesenxu.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -400,14 +400,14 @@
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/tags/css%E5%8A%A8%E7%94%BB/</loc>
+    <loc>https://xuesenxu.github.io/tags/ruoyi/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/tags/ruoyi/</loc>
+    <loc>https://xuesenxu.github.io/tags/css%E5%8A%A8%E7%94%BB/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -444,14 +444,14 @@
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/categories/EChats/Vue/</loc>
+    <loc>https://xuesenxu.github.io/categories/Vue/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/categories/Vue/</loc>
+    <loc>https://xuesenxu.github.io/categories/EChats/Vue/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -465,13 +465,6 @@
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/categories/React/Redux/</loc>
-    <lastmod>2022-10-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xuesenxu.github.io/categories/React/Next/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -479,7 +472,7 @@
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/categories/js/</loc>
+    <loc>https://xuesenxu.github.io/categories/React/Redux/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -487,6 +480,13 @@
   
   <url>
     <loc>https://xuesenxu.github.io/categories/node/</loc>
+    <lastmod>2022-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuesenxu.github.io/categories/js/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -507,14 +507,14 @@
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/categories/%E9%93%BE%E8%A1%A8/</loc>
+    <loc>https://xuesenxu.github.io/categories/webpack/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xuesenxu.github.io/categories/webpack/</loc>
+    <loc>https://xuesenxu.github.io/categories/%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
