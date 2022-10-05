@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://xuesenxu.github.io/posts/83df7274.html</loc>
+    
+    <lastmod>2022-10-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xuesenxu.github.io/posts/7d322883.html</loc>
     
     <lastmod>2022-09-20</lastmod>
@@ -404,6 +413,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://xuesenxu.github.io/tags/TTI/</loc>
+    <lastmod>2022-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -548,6 +564,20 @@
   
   <url>
     <loc>https://xuesenxu.github.io/categories/css%E5%8A%A8%E7%94%BB/</loc>
+    <lastmod>2022-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuesenxu.github.io/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TTI/</loc>
+    <lastmod>2022-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuesenxu.github.io/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TTI/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
