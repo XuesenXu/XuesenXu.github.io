@@ -1,0 +1,565 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>What is Total Blocking Time（TBT)什么是总阻塞时间 | 幻冬狐`Blog</title><meta name="keywords" content="性能优化,翻译,TBT"><meta name="author" content="幻冬狐"><meta name="copyright" content="幻冬狐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="你是否曾发现自己在一个网站上，感觉它已经完成了加载，但当你点击任何元素时，它却有一段时间没有反应？你的第一个想法可能是网站坏了，也可能是你的网络连接问题。 如果两者都不是原因，你刚刚经历的情况被称为 “总阻塞时间“。 在谷歌最近的一次更新中，即Lighthouse V6，他们引入了总阻塞时间，作为第一CPU空闲的替代，以帮助作为衡量网站在页面加载期间对用户输入的响应能力的指标。 在这篇文章中，我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is Total Blocking Time（TBT)什么是总阻塞时间">
+<meta property="og:url" content="https://xuesenxu.github.io/posts/c0b11299.html">
+<meta property="og:site_name" content="幻冬狐&#96;Blog">
+<meta property="og:description" content="你是否曾发现自己在一个网站上，感觉它已经完成了加载，但当你点击任何元素时，它却有一段时间没有反应？你的第一个想法可能是网站坏了，也可能是你的网络连接问题。 如果两者都不是原因，你刚刚经历的情况被称为 “总阻塞时间“。 在谷歌最近的一次更新中，即Lighthouse V6，他们引入了总阻塞时间，作为第一CPU空闲的替代，以帮助作为衡量网站在页面加载期间对用户输入的响应能力的指标。 在这篇文章中，我">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.328888.xyz/2022/09/23/Izm1h.jpg">
+<meta property="article:published_time" content="2022-10-06T13:22:38.000Z">
+<meta property="article:modified_time" content="2022-10-06T13:29:06.907Z">
+<meta property="article:author" content="幻冬狐">
+<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="翻译">
+<meta property="article:tag" content="TBT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.328888.xyz/2022/09/23/Izm1h.jpg"><link rel="shortcut icon" href="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="canonical" href="https://xuesenxu.github.io/posts/c0b11299"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#425aef"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/128.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/16.png"/><link rel="mask-icon" href="/img/siteicon/128.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'What is Total Blocking Time（TBT)什么是总阻塞时间',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-06 21:29:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="幻冬狐`Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.328888.xyz/2022/09/23/Izm1h.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">幻冬狐`Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">What is Total Blocking Time（TBT)什么是总阻塞时间</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-06T13:22:38.000Z" title="发表于 2022-10-06 21:22:38">2022-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-06T13:29:06.907Z" title="更新于 2022-10-06 21:29:06">2022-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TBT/">TBT</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TBT/%E7%BF%BB%E8%AF%91/">翻译</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="What is Total Blocking Time（TBT)什么是总阻塞时间"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="./images/image-20221006195219227.png" alt="image-20221006195219227"></p>
+<p>你是否曾发现自己在一个网站上，感觉它已经完成了加载，但当你点击任何元素时，它却有一段时间没有反应？你的第一个想法可能是网站坏了，也可能是你的网络连接问题。</p>
+<p>如果两者都不是原因，你刚刚经历的情况被称为 “<strong>总阻塞时间</strong>“。</p>
+<p>在谷歌最近的一次更新中，即Lighthouse V6，他们引入了总阻塞时间，作为第一CPU空闲的替代，以帮助作为衡量网站在页面加载期间对用户输入的响应能力的指标。</p>
+<p>在这篇文章中，我们将介绍所有你需要知道的关于总阻塞时间的信息，如何测量它，以及如何改善它。</p>
+<h2 id="什么是总阻塞时间（TBT）？"><a href="#什么是总阻塞时间（TBT）？" class="headerlink" title="什么是总阻塞时间（TBT）？"></a>什么是总阻塞时间（TBT）？</h2><p><strong>总阻塞时间（TBT）</strong>衡量的是在第一次绘制内容图（FCP）和互动时间（TTI）之间，主线程被阻塞的时间长到足以阻止输入响应的时间总量。简而言之，根据Lighthouse v.8，TBT衡量的是网页在加载过程中对用户输入没有反应的情况，占网站总性能的30%。</p>
+<p><img src="./images/image-20221006195253666.png" alt="image-20221006195253666"></p>
+<p>当用户请求一个网站时，浏览器使用主线程来解析HTML，构建DOM，用CSS、Javascript执行每个元素的样式，以及其他使页面在用户视口呈现的基本任务。</p>
+<p>在任何时候，如果一个长任务发生，主线程就会被阻塞。当这种情况发生时，浏览器不能停止或中断该任务，而且在任务完成之前，对用户的输入不会有任何响应。  </p>
+<p>这种测量方法是通过找到在<strong>第一次有内容的绘画（FCP）</strong>和<strong>互动时间（TTI）</strong>之间的所有长任务的总和。</p>
+<h2 id="什么是长任务？"><a href="#什么是长任务？" class="headerlink" title="什么是长任务？"></a>什么是长任务？</h2><p>长任务是指浏览器主线程上所有超过50ms的任务。这是由于Javascript文件未能在50ms的时间框架内完全执行—因此，停止了你的网站元素对用户输入的响应能力。</p>
+<p>一个简单的例子是这个浏览器的加载事件的主线程。</p>
+<p><img src="https://edgemesh.com/5e3d3268a134a79339be8368/614e2ded1e0000a06ff06f9a_h_Zo5mzdOUMyKDQ7X35YfAnZxZPfj1RstMCKeZxlymOJ3NXZZpUY8s6U-VTq4KiBPTgpZoDYYFTmXwqe6myfbNaQzNTpfFmMaIDKdrCrCDJIB2JOc4fjpfrT4pVUVzOd3tjAZuc7=s0.png?em-origin=assets-global.website-files.com&amp;em-format=avif" alt="img"></p>
+<p>在上面的加载事件中，有五个任务（任务1-5），其中三个（任务1、2和5）是长任务，因为它们超过了50ms。</p>
+<p><img src="./images/image-20221006195335766.png" alt="image-20221006195335766"></p>
+<p><img src="./images/image-20221006195403440.png" alt="image-20221006195403440"></p>
+<p>主线程上超过50ms的每个任务都是开始计算长任务的地方。因此，这个事件的加载时间总共是560ms-，其中345ms是总的阻塞时间。</p>
+<p>你网站的大部分功能和互动性（点击、单击和拖动）是由通过Javascript执行的事件处理程序驱动的。如果在你的网站加载过程中，一个元素呈现在用户的视口中，但还没有连接到它们各自的事件处理程序，那么这些元素就无法工作。</p>
+<p>一个实际的例子是，当你浏览一个网站时，按钮元素显示在你的视口中，但当你点击它时，它没有反应—因为使它发挥作用的代码还没有连接。任何导致这些事件处理程序没有在50毫秒内执行其任务的情况都会触发长任务。</p>
+<h5 id="为什么50ms是总阻塞时间的基本标志？"><a href="#为什么50ms是总阻塞时间的基本标志？" class="headerlink" title="为什么50ms是总阻塞时间的基本标志？"></a>为什么50ms是总阻塞时间的基本标志？</h5><p>50毫秒是TBT的基本标志，因为谷歌在浏览网页时依靠RAIL模型来获得良好的用户体验。RAIL是指响应动画空闲负载，其以用户为中心的性能模型提供了一个思考网络性能的结构。   </p>
+<p><img src="./images/image-20221006195518042.png" alt="image-20221006195518042"></p>
+<p>RAIL的主要目标是使用户成为所有网络性能的焦点。这个模型根据请求和响应之间的时间差进一步分解了用户感知的性能。</p>
+<p><img src="./images/image-20221006200717124.png" alt="image-20221006200717124"></p>
+<p>与任何更长的时间相比，50毫秒的响应时间给用户的感觉是瞬间的。</p>
+<p><img src="./images/image-20221006200818600.png" alt="image-20221006200818600"></p>
+<p>根据任务的数量，RAIL模型假设，如果一个应用程序在推荐的50ms内执行工作，你必须考虑之前的任务可能占据的额外的50ms—只留下50ms给浏览器响应用户的输入。</p>
+<h3 id="总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？"><a href="#总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？" class="headerlink" title="总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？"></a>总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？</h3><p>许多人将TBT误认为是TTI，因为它们在衡量网络互动性方面密切相关。但是，即使它们做的是几乎相同的事情，它们仍然有很大的不同。</p>
+<p>互动时间（TTI）是指一个网页对用户来说完全互动所需的时间。对于任何网页来说，被认为是互动的，这意味着。</p>
+<ul>
+<li>网页显示出有用的内容，即第一个内容性绘画（FCP）。</li>
+<li>为大多数可见的页面元素注册了事件处理程序</li>
+<li>页面在50ms内对用户的互动作出反应</li>
+</ul>
+<p><img src="./images/image-20221006201001398.png" alt="image-20221006201001398"></p>
+<p>当一个网页还在加载中，而用户试图与该网页互动时，由于主线程忙于解析和渲染元素，所以会出现延迟。每一个延迟都意味着网站的互动性受到了影响—这就是TBT来衡量这些延迟对用户体验的影响的地方。</p>
+<h3 id="什么是好的总阻塞时间？"><a href="#什么是好的总阻塞时间？" class="headerlink" title="什么是好的总阻塞时间？"></a>什么是好的总阻塞时间？</h3><ul>
+<li>一个好的总阻塞时间是指任何低于300ms的时间。</li>
+<li>如果在300到600ms之间，就需要改进。</li>
+<li>一个不好的总阻塞时间是600ms，如果你的网站处于这种情况，请立即解决。</li>
+</ul>
+<h3 id="如何测量你的总阻塞时间"><a href="#如何测量你的总阻塞时间" class="headerlink" title="如何测量你的总阻塞时间"></a>如何测量你的总阻塞时间</h3><p>衡量你的总阻塞时间的最好方法是确定主线程上发生的长任务。所有这些任务的总和构成了你的TBT。有两种方法可以测量你的TBT—用实验室或现场工具。根据你用来测量TBT的工具，你会得到几乎相似的结果，但每个工具的操作方式不同。</p>
+<ol>
+<li><p>使用实验室工具，你会得到网页在加载时间内发生的TBT分数。</p>
+<p>​    实验室工具的例子包括。</p>
+<ul>
+<li>WebPage Test</li>
+</ul>
+<ul>
+<li>ChromeDev工具</li>
+</ul>
+<ul>
+<li>灯塔</li>
+</ul>
+</li>
+<li><p>使用 “现场工具”，其结果是基于用户在页面上的真实体验—因此是 “现场”。</p>
+<p>现场工具的例子包括。</p>
+<ul>
+<li><p>PageSpeed Insights</p>
+</li>
+<li><p>Chrome用户体验报告’。</p>
+</li>
+<li><p>搜索控制台（核心网络生命力报告）</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>在本文中，我们将使用ChromeDev工具来测量我们的总阻塞时间。</p>
+<h3 id="使用ChromeDev工具查找您的总封堵时间"><a href="#使用ChromeDev工具查找您的总封堵时间" class="headerlink" title="使用ChromeDev工具查找您的总封堵时间"></a>使用ChromeDev工具查找您的总封堵时间</h3><p>Chrome开发工具是谷歌Chrome浏览器中的一个内置部分。除了作为一个普通的浏览器外，谷歌对该浏览器进行了修改，使之不仅仅是连接到你最喜欢的网站。相反，你可以使用一个特定的部分来监控你的网站。</p>
+<ul>
+<li>在桌面上打开你的chrome浏览器，进入测量你的TBT的网址，进入性能标签。</li>
+<li>如果你使用Windows，使用这些组合-CTRL + SHIFT + I</li>
+<li>如果你使用的是Mac，使用这些组合-CMD + OPT + I</li>
+</ul>
+<p>如果你操作正确，你应该有这样的东西👇</p>
+<p><img src="./images/image-20221006201456613.png" alt="image-20221006201456613"></p>
+<ul>
+<li>在chrome中访问性能标签的另一个更简单的方法是，右键单击你想跟踪的网页—然后向下滚动并点击 “检查”。</li>
+</ul>
+<p><img src="./images/image-20221006201638542.png" alt="image-20221006201638542"></p>
+<ul>
+<li>在你的chrome浏览器上打开后，进入标签顶部的性能部分。  </li>
+<li>如果你在打开这个标签后没有立即看到性能部分，点击”&gt;&gt;”图标，你会在下拉中看到它。</li>
+<li>当你点击性能时，你会看到两个选项；你可以选择。</li>
+</ul>
+<ol>
+<li>记录你当前的页面，以获得其目前在该点上的性能分析。你可以通过点击记录按钮或按下Ctrl + E来完成。</li>
+</ol>
+<p>或者</p>
+<ol>
+<li>重新加载当前页面，以获得基于新的加载事件和全新过程的新分析。你可以通过点击记录按钮或按下Ctrl + Shift + E来完成这个操作。</li>
+</ol>
+<p><img src="./images/image-20221006201904939.png" alt="image-20221006201904939"></p>
+<ul>
+<li>重新加载整个网站是衡量你的TBT和任何其他性能指标的最佳方式。</li>
+</ul>
+<p>点击重新加载按钮，以便该工具能够对你的网站进行剖析。下面是一个例子。</p>
+<p><img src="./images/image-20221006202008636.png" alt="image-20221006202008636"></p>
+<ul>
+<li>当该工具完成对你的网站的分析时，你会在屏幕上看到类似这样的东西。</li>
+</ul>
+<p><img src="./images/image-20221006202122837.png" alt="image-20221006202122837"></p>
+<ul>
+<li><p>一开始可能看起来很混乱，但不要惊慌—向下滚动并点击主要部分，以获得主线上活动的下拉列表。</p>
+</li>
+<li><p>主线程上有许多活动，但在 “主 “部分的正下方，你会看到发生的任务列表。</p>
+</li>
+</ul>
+<p><img src="./images/image-20221006202251251.png" alt="image-20221006202251251"></p>
+<ul>
+<li>寻找长任务可能很棘手，一系列的任务都发生在主线程上。</li>
+</ul>
+<p>幸运的是，ChromeDev工具将主线程上超过50毫秒的长任务用红色阴影标出，50毫秒以下的常规任务用灰灰色标出。</p>
+<p>-这是一个低于50毫秒的常规任务。</p>
+<p><img src="./images/image-20221006202418978.png" alt="image-20221006202418978"></p>
+<ul>
+<li>当你点击这项任务时，你会在下面得到一个总时间和自我时间的摘要</li>
+</ul>
+<p><img src="./images/image-20221006202518412.png" alt="image-20221006202518412"></p>
+<p>-这是个超过50ms的长任务。</p>
+<p><img src="./images/image-20221006202614042.png" alt="image-20221006202614042"></p>
+<ul>
+<li>点击长的任务也会给你一个摘要，包括总时间和自我时间。</li>
+</ul>
+<p><img src="./images/image-20221006202702075.png" alt="image-20221006202702075"></p>
+<ul>
+<li>对于每一项长任务，ChromeDev工具都会将其从最初的加载事件到用户视口中的最终渲染阶段全部汇总起来—所有这些都是你的总阻塞时间。</li>
+</ul>
+<p>你可以通过点击主要部分来隐藏下拉菜单，你的总阻塞时间将直接在摘要部分的下面。</p>
+<p><img src="./images/image-20221006202759784.png" alt="image-20221006202759784"></p>
+<p>而这就是你需要知道的衡量你的总阻塞时间的全部内容。同时，你应该注意，在有些情况下，你的TBT记录了在FCP之前发生的长任务。</p>
+<p>在这种情况下，你应该忽略这样的长任务，因为TBT的测量只从First Contentful Paint开始，而不是之前。</p>
+<h2 id="如何提高总阻塞时间"><a href="#如何提高总阻塞时间" class="headerlink" title="如何提高总阻塞时间"></a>如何提高总阻塞时间</h2><p>主线程上的Javascript任务在执行前需要超过50ms的时间，这是导致TBT的主要原因。最好的解决办法是建立一个完全可用的网站，不依赖Javascript来运作。但就给用户提供最佳的用户体验和网站功能而言，这是不可能的。知道如何找到这些漫长的任务是解决方案的一半，解决它是另一半。下面是你今天可以用来改善你的TBT的四种方法。</p>
+<h3 id="1-尽量减少浏览器主线程的工作负荷"><a href="#1-尽量减少浏览器主线程的工作负荷" class="headerlink" title="1. 尽量减少浏览器主线程的工作负荷"></a>1. 尽量减少浏览器主线程的工作负荷</h3><p>浏览器的主线程是有关网页处理和渲染的一切发生的地方。例如，浏览器中的渲染器进程承载着主线程，使其能够将普通代码转化为允许用户进行交互的网页。</p>
+<p>这个过程是这样的。脚本评估 -样式和布局-渲染-解析HTML和CSS -脚本解析和编译-垃圾回收</p>
+<p><img src="./images/image-20221006202917067.png" alt="image-20221006202917067"></p>
+<p>使用Lighthouse，你可以很容易地得到主线程上的工作负荷明细，知道哪里花费了更多的CPU时间来加载你的网站。</p>
+<p>你也可以在ChromeDev Tools中看到这一细分。</p>
+<p><img src="./images/image-20221006202959523.png" alt="image-20221006202959523"></p>
+<p>有了这些结果，你可以很容易地了解到主线程上的哪个进程比它应该花费的时间更多，并对其进行优化。</p>
+<p>在我们的结果中，我们看到，脚本评估比它应该的要高。其他进程的情况也是如此。如果你发现自己处于这种情况，这里有一些方法，你可以用来修复每个进程。</p>
+<ol>
+<li>脚本评估</li>
+</ol>
+<ul>
+<li><p>让你的输入处理程序去抖动</p>
+</li>
+<li><p>使用服务工作者</p>
+</li>
+<li>优化第三方Javascript</li>
+</ul>
+<ol>
+<li>风格和布局</li>
+</ol>
+<ul>
+<li>避免大型、复杂的布局和布局失误</li>
+<li>减少样式计算的范围和复杂性</li>
+</ul>
+<ol>
+<li>渲染</li>
+</ol>
+<ul>
+<li>坚持只使用合成器属性并管理层数</li>
+<li>简化绘画的复杂性，减少绘画区域</li>
+</ul>
+<ol>
+<li>解析HTML和CSS</li>
+</ol>
+<ul>
+<li>提取关键的CSS</li>
+<li>最小化CSS</li>
+<li>推迟非关键性的CSS</li>
+</ul>
+<ol>
+<li>脚本解析和编译</li>
+</ol>
+<ul>
+<li>通过代码拆分减少Javascript的有效载荷</li>
+<li>删除未使用的代码</li>
+</ul>
+<ol>
+<li>垃圾收集</li>
+</ol>
+<ul>
+<li>用measureMemory(.)监控你的网页的总内存使用情况</li>
+</ul>
+<h3 id="2-减少第三方代码的影响"><a href="#2-减少第三方代码的影响" class="headerlink" title="2.减少第三方代码的影响"></a>2.减少第三方代码的影响</h3><p>第三方代码是一个网站的外部部分，使其无缝运作。添加插件、整合社交媒体按钮或在网站上安装外部服务都会影响浏览器解析和渲染网站的主线。</p>
+<p><img src="./images/image-20221006203310939.png" alt="image-20221006203310939"></p>
+<p>如果这些第三方代码没有完全针对你的网站进行优化，就会导致。</p>
+<ul>
+<li><p>用未经优化的iframes阻塞window.Onload事件</p>
+</li>
+<li><p>用冗长的任务拖延浏览器的主线程</p>
+</li>
+</ul>
+<p>因此，优化或减少你网站上的第三方代码是至关重要的。要做到这一点，你可以首先分析你网站上的所有第三方代码，并删除那些不影响你网站功能的代码。</p>
+<h3 id="3-保持请求数和传输大小的低水平"><a href="#3-保持请求数和传输大小的低水平" class="headerlink" title="3.保持请求数和传输大小的低水平"></a>3.保持请求数和传输大小的低水平</h3><p>你网站上的每个元素都有它的尺寸，所以当浏览器请求该元素时，它会获取所有的数据，包括尺寸，在显示给用户之前，从浏览器向下传输到服务器。</p>
+<p>如果从浏览器到主服务器的请求数量很高，每个元素的数据就会累积起来，使传输的大小超过主线程可以处理的程度。</p>
+<p><img src="./images/image-20221006203611756.png" alt="image-20221006203611756"></p>
+<p>由于Javascripts处理网站上的所有请求，Lighthouse建议优化你的代码，通过为你的页面资源设置性能预算来减少请求数和传输大小。你可以通过添加 budget.json 文件来做到这一点，以防止出现退步。</p>
+<h3 id="4-减少Javascript的执行时间"><a href="#4-减少Javascript的执行时间" class="headerlink" title="4.减少Javascript的执行时间"></a>4.减少Javascript的执行时间</h3><p>Javascript完成执行的时间是总阻塞时间的主要问题。减少Javascript的执行时间是指尽量减少编译、解析和执行Javascript文件的时间。</p>
+<p>如果你的Javascript加载速度没有那么快，就会给你的网站带来这些问题。</p>
+<ul>
+<li>高内存消耗</li>
+<li>网络成本高，导致下载时间长</li>
+<li>对用户输入的反应差</li>
+</ul>
+<p>当你的网站遇到这些问题时，你将会有一个糟糕的用户体验，这将远远影响你的整体加载时间。</p>
+<p>减少Javascript执行时间的最好方法是。</p>
+<ul>
+<li>推迟未使用的Javascript</li>
+<li>实施代码拆分</li>
+<li><p>压缩和简化Javascript代码</p>
+</li>
+<li><p>使用PRPL模式来缓存你的代码。</p>
+</li>
+</ul>
+<ul>
+<li><p>预加载重要的Javascript文件</p>
+</li>
+<li><p>渲染第一幅画</p>
+</li>
+<li><p>预先缓存重要的资产</p>
+</li>
+<li><p>懒惰地加载Javascript文件</p>
+</li>
+</ul>
+<p>总的来说，改善你的TBT可以让用户在你的网站加载后随时与之互动。TBT的一个主要领域是取决于网站的渲染内容。</p>
+<p>如果你的网站使用服务器端渲染，你大多会有一个快速的FCP得分，因为Javascript还没有开始加载。这在用户体验方面造成了很大的问题，因为网站看起来已经准备好与用户的视口互动，但在Javascript完成加载之前，使用网站是不可能的。</p>
+<p>然而，这对于网站在客户端的渲染是不同的。在这种情况下，所有的网站功能都在客户端，也就是说，从客户端的缓存位置提供完整的页面，而不需要从服务器上获取。</p>
+<h2 id="最后的思考"><a href="#最后的思考" class="headerlink" title="最后的思考"></a>最后的思考</h2><p>将用户体验作为网站优化的优先事项，可以为你提供多种方法来改善你的网站。像总阻塞时间这样的用户指标也是如此，因为它关注的是网站在加载时对用户的反应程度。用户在加载前、加载中和加载后的反应，是构成你的网站体验的因素。</p>
+<p>如果这种体验的任何部分在与你的网站互动时对用户产生负面影响，谷歌就会记录下来，并向你展示你可以如何改进。理想情况下，当涉及到TBT时，你要把目标定在300ms以下，并专注于优化你所有的Javascript代码。</p>
+<p>保持你的网站健康应该是你的首要目标。定期的网站性能审计可以帮助你看到你可能需要优化的其他地方，以提高性能。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://XuesenXu.github.io">幻冬狐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xuesenxu.github.io/posts/c0b11299.html">https://xuesenxu.github.io/posts/c0b11299.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://XuesenXu.github.io" target="_blank">幻冬狐`Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><a class="post-meta__tags" href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a><a class="post-meta__tags" href="/tags/TBT/">TBT</a></div><div class="post_share"><div class="social-share" data-image="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" src="/img/weixin.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/c6e11bb0.html"><img class="next-cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Total Blocking Time(总阻塞时间)——译</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/c6e11bb0.html" title="Total Blocking Time(总阻塞时间)——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-06</div><div class="title">Total Blocking Time(总阻塞时间)——译</div></div></a></div><div><a href="/posts/83df7274.html" title="First Contentful Paint(首次内容绘制)——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-05</div><div class="title">First Contentful Paint(首次内容绘制)——译</div></div></a></div><div><a href="/posts/ad091488.html" title="速度指数(Speed Index)：它是什么以及如何为此优化您的网站"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-06</div><div class="title">速度指数(Speed Index)：它是什么以及如何为此优化您的网站</div></div></a></div><div><a href="/posts/6aa9f6d6.html" title="Time to Interactive(互动时间)——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-05</div><div class="title">Time to Interactive(互动时间)——译</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">幻冬狐</div><div class="author-info__description">技术笔记、总结、分享</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XuesenXu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/XuesenXu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/XuesenXu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_45566730" target="_blank" title="Blog"><i class="fas fa-blog"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4%EF%BC%88TBT%EF%BC%89%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是总阻塞时间（TBT）？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%95%BF%E4%BB%BB%E5%8A%A1%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">什么是长任务？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%8850ms%E6%98%AF%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A0%87%E5%BF%97%EF%BC%9F"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">为什么50ms是总阻塞时间的基本标志？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4%EF%BC%88TBT%EF%BC%89%E5%92%8C%E4%BA%A4%E4%BA%92%E6%97%B6%E9%97%B4%EF%BC%88TTI%EF%BC%89%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A5%BD%E7%9A%84%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">什么是好的总阻塞时间？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B5%8B%E9%87%8F%E4%BD%A0%E7%9A%84%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4"><span class="toc-number">2.3.</span> <span class="toc-text">如何测量你的总阻塞时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ChromeDev%E5%B7%A5%E5%85%B7%E6%9F%A5%E6%89%BE%E6%82%A8%E7%9A%84%E6%80%BB%E5%B0%81%E5%A0%B5%E6%97%B6%E9%97%B4"><span class="toc-number">2.4.</span> <span class="toc-text">使用ChromeDev工具查找您的总封堵时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%8F%90%E9%AB%98%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">如何提高总阻塞时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%BB%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%8D%B7"><span class="toc-number">3.1.</span> <span class="toc-text">1. 尽量减少浏览器主线程的工作负荷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%87%8F%E5%B0%91%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%A3%E7%A0%81%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">3.2.</span> <span class="toc-text">2.减少第三方代码的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%9D%E6%8C%81%E8%AF%B7%E6%B1%82%E6%95%B0%E5%92%8C%E4%BC%A0%E8%BE%93%E5%A4%A7%E5%B0%8F%E7%9A%84%E4%BD%8E%E6%B0%B4%E5%B9%B3"><span class="toc-number">3.3.</span> <span class="toc-text">3.保持请求数和传输大小的低水平</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%87%8F%E5%B0%91Javascript%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="toc-number">3.4.</span> <span class="toc-text">4.减少Javascript的执行时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E6%80%9D%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">最后的思考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/c0b11299.html" title="What is Total Blocking Time（TBT)什么是总阻塞时间"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="What is Total Blocking Time（TBT)什么是总阻塞时间"/></a><div class="content"><a class="title" href="/posts/c0b11299.html" title="What is Total Blocking Time（TBT)什么是总阻塞时间">What is Total Blocking Time（TBT)什么是总阻塞时间</a><time datetime="2022-10-06T13:22:38.000Z" title="发表于 2022-10-06 21:22:38">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c6e11bb0.html" title="Total Blocking Time(总阻塞时间)——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Total Blocking Time(总阻塞时间)——译"/></a><div class="content"><a class="title" href="/posts/c6e11bb0.html" title="Total Blocking Time(总阻塞时间)——译">Total Blocking Time(总阻塞时间)——译</a><time datetime="2022-10-06T13:14:33.000Z" title="发表于 2022-10-06 21:14:33">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ad091488.html" title="速度指数(Speed Index)：它是什么以及如何为此优化您的网站"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="速度指数(Speed Index)：它是什么以及如何为此优化您的网站"/></a><div class="content"><a class="title" href="/posts/ad091488.html" title="速度指数(Speed Index)：它是什么以及如何为此优化您的网站">速度指数(Speed Index)：它是什么以及如何为此优化您的网站</a><time datetime="2022-10-06T06:58:46.000Z" title="发表于 2022-10-06 14:58:46">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6aa9f6d6.html" title="Time to Interactive(互动时间)——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Time to Interactive(互动时间)——译"/></a><div class="content"><a class="title" href="/posts/6aa9f6d6.html" title="Time to Interactive(互动时间)——译">Time to Interactive(互动时间)——译</a><time datetime="2022-10-05T10:36:49.000Z" title="发表于 2022-10-05 18:36:49">2022-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/83df7274.html" title="First Contentful Paint(首次内容绘制)——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="First Contentful Paint(首次内容绘制)——译"/></a><div class="content"><a class="title" href="/posts/83df7274.html" title="First Contentful Paint(首次内容绘制)——译">First Contentful Paint(首次内容绘制)——译</a><time datetime="2022-10-05T01:49:25.212Z" title="发表于 2022-10-05 09:49:25">2022-10-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 幻冬狐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://xuesenxu.github.io/posts/c0b11299.html'
+    this.page.identifier = '/posts/c0b11299.html'
+    this.page.title = 'What is Total Blocking Time（TBT)什么是总阻塞时间'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><div class="aplayer no-destory" data-id="7333814764" data-server="tencent" data-type="playlist" data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 有新文章啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍗点击食用🍔</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 有新文章啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍗点击食用🍔',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#425aef' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '25092b1f269d44758d6f060cf87a647c';
+  var gaud_map_key = '56cc48a76c5b62df4a89fed6ff846ba6';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script async src="/js/ali_font.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '30');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('article-sort-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__slideInRight');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
