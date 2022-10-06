@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>速度指数(Speed Index)：它是什么以及如何为此优化您的网站 | 幻冬狐`Blog</title><meta name="keywords" content="性能优化,翻译,TTI"><meta name="author" content="幻冬狐"><meta name="copyright" content="幻冬狐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="原文地址 考虑页面速度时，速度指数 (SI) 是一个有趣的指标。它绝对是您页面性能的一个指标，但它与其他以用户为中心的指标（例如First Contentful Paint和Largest Contentful Paint ）完全不同。SI 表示您的网站在首屏加载的速度。或者换句话说，当用户视口中的所有内容完全可见时。查看页面的加载时间时，您不太可能因速度指数而受到惩罚或奖励。这不是忽视它的理由。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="速度指数(Speed Index)：它是什么以及如何为此优化您的网站">
+<meta property="og:url" content="https://xuesenxu.github.io/posts/ad091488.html">
+<meta property="og:site_name" content="幻冬狐&#96;Blog">
+<meta property="og:description" content="原文地址 考虑页面速度时，速度指数 (SI) 是一个有趣的指标。它绝对是您页面性能的一个指标，但它与其他以用户为中心的指标（例如First Contentful Paint和Largest Contentful Paint ）完全不同。SI 表示您的网站在首屏加载的速度。或者换句话说，当用户视口中的所有内容完全可见时。查看页面的加载时间时，您不太可能因速度指数而受到惩罚或奖励。这不是忽视它的理由。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.328888.xyz/2022/09/23/Izm1h.jpg">
+<meta property="article:published_time" content="2022-10-06T06:58:46.000Z">
+<meta property="article:modified_time" content="2022-10-06T07:00:49.734Z">
+<meta property="article:author" content="幻冬狐">
+<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="翻译">
+<meta property="article:tag" content="TTI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.328888.xyz/2022/09/23/Izm1h.jpg"><link rel="shortcut icon" href="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="canonical" href="https://xuesenxu.github.io/posts/ad091488"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#425aef"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/128.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/16.png"/><link rel="mask-icon" href="/img/siteicon/128.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '速度指数(Speed Index)：它是什么以及如何为此优化您的网站',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-06 15:00:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="幻冬狐`Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.328888.xyz/2022/09/23/Izm1h.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">幻冬狐`Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">速度指数(Speed Index)：它是什么以及如何为此优化您的网站</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-06T06:58:46.000Z" title="发表于 2022-10-06 14:58:46">2022-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-06T07:00:49.734Z" title="更新于 2022-10-06 15:00:49">2022-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TTI/">TTI</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TTI/%E7%BF%BB%E8%AF%91/">翻译</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="速度指数(Speed Index)：它是什么以及如何为此优化您的网站"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/wordpress/speed-index">原文地址</a></p>
+<p>考虑<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/tips-tricks/how-page-speed-affects-search-engine-rank-and-what-you-can-do-about-it">页面速度</a>时，速度指数 (SI) 是一个有趣的指标。它绝对是您页面性能的一个指标，但它与其他以用户为中心的指标（例如<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/wordpress/fcp-first-contentful-paint">First Contentful Paint</a>和<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/wordpress/lcp">Largest Contentful Paint</a> ）完全不同。SI 表示您的网站在首屏加载的速度。或者换句话说，当用户视口中的所有内容完全可见时。查看页面的加载时间时，您不太可能因速度指数而受到惩罚或奖励。这不是忽视它的理由。作为一个单一的指标，它是少数包含多个其他指标的指标之一，可以让您对网站的整体速度、效率和性能有一个全面的了解。</p>
+<h2 id="什么是速度指数？"><a href="#什么是速度指数？" class="headerlink" title="什么是速度指数？"></a>什么是速度指数？</h2><p>Lighthouse 是 Google 的 PageSpeed Insights 支柱，它会查看多个性能指标来对您的网站进行评分。速度指数 (SI) 就是其中之一，报告将以秒为单位显示时间，而不是像其他一些指标那样以毫秒为单位。谷歌将 SI 定义为“页面内容可见填充的速度”。</p>
+<p>很直截了当，对吧？</p>
+<p>Speed Index 不考虑后端脚本或其他非绘制负载。不过，它们确实会影响它。SI 只是衡量用户完整查看您的内容所需的时间。那是踢球者。<strong>充分</strong>。虽然 LCP 等其他指标是在显示内容的最大部分时测量的，但速度指数考虑了实际应该显示的任何<strong>和所有内容</strong>。</p>
+<p>这不是整体页面速度的衡量标准。这考虑到浏览器何时呈现所有元素。包括影响性能的不可见脚本和元素。但是，如果您想很好地衡量用户何时认为页面已完全加载，那么 SI 是值得关注的指标。由于它以用户为中心，SI 可以很好地指示整体站点的健康状况，以及站点<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/design/how-to-perform-a-ux-audit-of-your-wordpress-site">用户体验 (UX)</a>的基线。</p>
+<h2 id="如何测量速度指数"><a href="#如何测量速度指数" class="headerlink" title="如何测量速度指数"></a>如何测量速度指数</h2><p>与大多数网站性能指标一样，最常用的工具之一是 Google 自己的<a target="_blank" rel="noopener" href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights</a>。这个工具也是它返回的结果中最特别的工具之一。即使是最完善的网站，它也是相对挑剔的。PageSpeed Insights 最常根据过去 28 天的收集数据为您的网站提供实验室数据。但是，如果您有足够多的访问者通过 Chrome 将信息传递回 Google，您也可以从报告中获取真实的 现场数据。不过，并不是每个网站都能得到这个。</p>
+<p><img src="https://www.elegantthemes.com/blog/wp-content/uploads/2021/08/001-Speed-Index.png" alt=""></p>
+<p>如您所见，其中许多指标的速度都是绿色的。这表明它们“好”。这显然是您想要您的网站的地方。但是，速度指数是 4.0 秒和橙色。用户要等很长时间才能看到首屏上的所有内容。</p>
+<h2 id="什么是良好的速度指数分数？"><a href="#什么是良好的速度指数分数？" class="headerlink" title="什么是良好的速度指数分数？"></a>什么是良好的速度指数分数？</h2><p>PageSpeed Insights 使用以下分数对您网站的速度指数进行排名并相应地对其进行颜色编码：</p>
+<ul>
+<li>绿色（良好）– 0 到 3.4 秒</li>
+<li>橙色（中等）– 3.4 至 5.8 秒</li>
+<li>红色（慢）——超过 5.8 秒</li>
+</ul>
+<p>正如我们之前所说，PageSpeed Insights 在其测量中非常关键。如果您处于橙色或红色状态，您可能需要使用<a target="_blank" rel="noopener" href="https://gtmetrix.com/">GTmetrix</a>或 Pingdom 的<a target="_blank" rel="noopener" href="https://tools.pingdom.com/">Speed Test</a>等工具来查看他们的实时数据显示的内容。我们认为最好在不同时间使用多种工具测试您的网站，以获得最佳的整体性能图片。</p>
+<h2 id="如何优化您的速度指数分数"><a href="#如何优化您的速度指数分数" class="headerlink" title="如何优化您的速度指数分数"></a>如何优化您的速度指数分数</h2><p>您可以采取一些步骤来优化您的 Speed Index 分数。如果您已经尝试优化您的网站以提高任何类型的页面速度（或者，从技术上讲，降低），那么您可能在某种程度上也影响了您的 SI 分数。我们将向您展示一些专门针对您的 SI 时间的方法，以便您的页面尽快加载，从而为您的访问者提供最佳体验。</p>
+<h3 id="减少渲染阻塞资源"><a href="#减少渲染阻塞资源" class="headerlink" title="减少渲染阻塞资源"></a>减少渲染阻塞资源</h3><p>更具体地说，减少 JavaScript 执行时间是提高速度指数分数的主要方法之一。渲染阻止资源是通过优先加载阻止您网站的其他部分加载的脚本和代码。不是站点同时加载不同的元素，而是一些元素暂停所有其他元素，直到它们完成。</p>
+<p>这会降低您网站的速度指数。为了解决这个问题，您可以推迟加载任意数量的脚本和代码位，直到可见元素绘制到 DOM 之后。识别罪魁祸首实际上相对容易，因为您可以使用<a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/devtools/coverage/">Chrome 开发工具</a>在加载时查看您的网站，该工具将指示哪些元素正在停止渲染。</p>
+<h3 id="减少站点的主线程工作"><a href="#减少站点的主线程工作" class="headerlink" title="减少站点的主线程工作"></a>减少站点的主线程工作</h3><p>与渲染阻止资源一样，您可以通过加载占用服务器大量处理能力的不同元素来限制站点的性能。减少这些可以帮助将站点更快地推送到浏览器。</p>
+<p>最简单的解决方案是 <strong>停止使用如此多的 JavaScript</strong>。<a target="_blank" rel="noopener" href="https://gtmetrix.com/minimize-main-thread-work.html">GTmetrix</a>说得最好：</p>
+<font size="22px">一般来说，页面的 JavaScript 越多，解析/编译过程就越长；导致等待用户查看内容并与您的页面交互的时间更长。</font>
+
+<p>我们认识到这可能并不容易。您已将网站设计为以某种方式运行。但是，您可能可以删除<a target="_blank" rel="noopener" href="https://web.dev/remove-unused-code/">未使用的代码</a>，并且您可能能够优化您正在加载到您的站点中的任何<a target="_blank" rel="noopener" href="https://web.dev/fast/#optimize-your-third-party-resources">第三方JavaScript</a> 。另外，缩小你的 JavaScript。</p>
+<p>在 JS 审核之上，确保缩小 CSS 和 HTML。这将减轻更多的主线程压力。缓存和优化插件通常也有这些选项。</p>
+<h2 id="速度指数常见问题"><a href="#速度指数常见问题" class="headerlink" title="速度指数常见问题"></a>速度指数常见问题</h2><p>速度指数是一个具有复杂后果的简单概念。我们想回答一些关于 SI 的常见问题，以帮助您尽可能优化您的网站。</p>
+<h3 id="速度指数如何适应我网站的整体性能？"><a href="#速度指数如何适应我网站的整体性能？" class="headerlink" title="速度指数如何适应我网站的整体性能？"></a>速度指数如何适应我网站的整体性能？</h3><p>速度指数作为一个单一的指标，可以很好地表明您的网站在许多不同领域的表现。因为它考虑了完全可见的首屏内容，所以您不仅可以将其用作衡量用户感知加载量的指标，还可以粗略估计您的网站在许多不同领域的表现。</p>
+<p>就您的网站正在做什么而言，它实际上并没有为您提供很多信息。它可以被视为一个包罗万象的指标，正如 GTmetrix 所说的那样，它是“一个有用的整体基准，用于评估您网站的整体性能。”</p>
+<h3 id="我应该特别关注我的速度指数分数吗？"><a href="#我应该特别关注我的速度指数分数吗？" class="headerlink" title="我应该特别关注我的速度指数分数吗？"></a>我应该特别关注我的速度指数分数吗？</h3><p>可能不是，不。</p>
+<p>虽然对您的站点进行基准测试非常有用，但关注其他更细化的问题，例如首次内容绘制 ( FCP )、最大内容绘制 ( LCP )、首字节时间 ( TTFB ) 和首次输入延迟 ( FID )更重要。您可以采取任意数量的步骤来单独改进这些步骤，从而提高您的速度指数。当作为整体基准时，您可以看到您的优化在 SI 中的效果如何。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>页面速度优化是网站所有者战斗的永无止境的战斗。您必须在可用性、体验和性能之间取得平衡，而找到这种平衡可能很困难。当测试在这么多不同的元素上返回这么多不同的分数时，很难知道把你的精力和资源放在哪里。速度指数可以帮助解决这个问题，它是一个单一的指标，可以显示您的网站在您调整网站性能的其他更具体部分时的表现。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://XuesenXu.github.io">幻冬狐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xuesenxu.github.io/posts/ad091488.html">https://xuesenxu.github.io/posts/ad091488.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://XuesenXu.github.io" target="_blank">幻冬狐`Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><a class="post-meta__tags" href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a><a class="post-meta__tags" href="/tags/TTI/">TTI</a></div><div class="post_share"><div class="social-share" data-image="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" src="/img/weixin.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/6aa9f6d6.html"><img class="next-cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Time to Interactive(互动时间)——译</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/6aa9f6d6.html" title="Time to Interactive(互动时间)——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-05</div><div class="title">Time to Interactive(互动时间)——译</div></div></a></div><div><a href="/posts/83df7274.html" title="First Contentful Paint(首次内容绘制)——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-05</div><div class="title">First Contentful Paint(首次内容绘制)——译</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">幻冬狐</div><div class="author-info__description">技术笔记、总结、分享</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XuesenXu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/XuesenXu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/XuesenXu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_45566730" target="_blank" title="Blog"><i class="fas fa-blog"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%9F%E5%BA%A6%E6%8C%87%E6%95%B0%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是速度指数？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B5%8B%E9%87%8F%E9%80%9F%E5%BA%A6%E6%8C%87%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">如何测量速度指数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%89%AF%E5%A5%BD%E7%9A%84%E9%80%9F%E5%BA%A6%E6%8C%87%E6%95%B0%E5%88%86%E6%95%B0%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">什么是良好的速度指数分数？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%82%A8%E7%9A%84%E9%80%9F%E5%BA%A6%E6%8C%87%E6%95%B0%E5%88%86%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">如何优化您的速度指数分数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E6%B8%B2%E6%9F%93%E9%98%BB%E5%A1%9E%E8%B5%84%E6%BA%90"><span class="toc-number">4.1.</span> <span class="toc-text">减少渲染阻塞资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E7%AB%99%E7%82%B9%E7%9A%84%E4%B8%BB%E7%BA%BF%E7%A8%8B%E5%B7%A5%E4%BD%9C"><span class="toc-number">4.2.</span> <span class="toc-text">减少站点的主线程工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9F%E5%BA%A6%E6%8C%87%E6%95%B0%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">速度指数常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9F%E5%BA%A6%E6%8C%87%E6%95%B0%E5%A6%82%E4%BD%95%E9%80%82%E5%BA%94%E6%88%91%E7%BD%91%E7%AB%99%E7%9A%84%E6%95%B4%E4%BD%93%E6%80%A7%E8%83%BD%EF%BC%9F"><span class="toc-number">5.1.</span> <span class="toc-text">速度指数如何适应我网站的整体性能？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E5%BA%94%E8%AF%A5%E7%89%B9%E5%88%AB%E5%85%B3%E6%B3%A8%E6%88%91%E7%9A%84%E9%80%9F%E5%BA%A6%E6%8C%87%E6%95%B0%E5%88%86%E6%95%B0%E5%90%97%EF%BC%9F"><span class="toc-number">5.2.</span> <span class="toc-text">我应该特别关注我的速度指数分数吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">6.</span> <span class="toc-text">结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/ad091488.html" title="速度指数(Speed Index)：它是什么以及如何为此优化您的网站"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="速度指数(Speed Index)：它是什么以及如何为此优化您的网站"/></a><div class="content"><a class="title" href="/posts/ad091488.html" title="速度指数(Speed Index)：它是什么以及如何为此优化您的网站">速度指数(Speed Index)：它是什么以及如何为此优化您的网站</a><time datetime="2022-10-06T06:58:46.000Z" title="发表于 2022-10-06 14:58:46">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6aa9f6d6.html" title="Time to Interactive(互动时间)——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Time to Interactive(互动时间)——译"/></a><div class="content"><a class="title" href="/posts/6aa9f6d6.html" title="Time to Interactive(互动时间)——译">Time to Interactive(互动时间)——译</a><time datetime="2022-10-05T10:36:49.000Z" title="发表于 2022-10-05 18:36:49">2022-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/83df7274.html" title="First Contentful Paint(首次内容绘制)——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="First Contentful Paint(首次内容绘制)——译"/></a><div class="content"><a class="title" href="/posts/83df7274.html" title="First Contentful Paint(首次内容绘制)——译">First Contentful Paint(首次内容绘制)——译</a><time datetime="2022-10-05T01:49:25.212Z" title="发表于 2022-10-05 09:49:25">2022-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/7d322883.html" title="node三大模块"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="node三大模块"/></a><div class="content"><a class="title" href="/posts/7d322883.html" title="node三大模块">node三大模块</a><time datetime="2022-09-20T13:16:55.000Z" title="发表于 2022-09-20 21:16:55">2022-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/21ff1604.html" title="PC端实现列表懒加载"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PC端实现列表懒加载"/></a><div class="content"><a class="title" href="/posts/21ff1604.html" title="PC端实现列表懒加载">PC端实现列表懒加载</a><time datetime="2022-09-17T08:02:21.000Z" title="发表于 2022-09-17 16:02:21">2022-09-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 幻冬狐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://xuesenxu.github.io/posts/ad091488.html'
+    this.page.identifier = '/posts/ad091488.html'
+    this.page.title = '速度指数(Speed Index)：它是什么以及如何为此优化您的网站'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><div class="aplayer no-destory" data-id="7333814764" data-server="tencent" data-type="playlist" data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 有新文章啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍗点击食用🍔</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 有新文章啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍗点击食用🍔',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#425aef' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '25092b1f269d44758d6f060cf87a647c';
+  var gaud_map_key = '56cc48a76c5b62df4a89fed6ff846ba6';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script async src="/js/ali_font.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '30');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('article-sort-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__slideInRight');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
