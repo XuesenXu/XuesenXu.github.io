@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.328888.xyz/2022/09/23/Izm1h.jpg">
 <meta property="article:published_time" content="2022-10-06T13:22:38.000Z">
-<meta property="article:modified_time" content="2022-10-06T13:29:06.907Z">
+<meta property="article:modified_time" content="2022-10-07T01:12:58.209Z">
 <meta property="article:author" content="幻冬狐">
 <meta property="article:tag" content="性能优化">
 <meta property="article:tag" content="翻译">
@@ -55,7 +55,7 @@
   isHome: false,
   isHighlightShrink: true,
   isToc: true,
-  postUpdate: '2022-10-06 21:29:06'
+  postUpdate: '2022-10-07 09:12:58'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -145,31 +145,31 @@
     }
     detectApple()
     })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="幻冬狐`Blog" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.328888.xyz/2022/09/23/Izm1h.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">幻冬狐`Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">What is Total Blocking Time（TBT)什么是总阻塞时间</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-06T13:22:38.000Z" title="发表于 2022-10-06 21:22:38">2022-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-06T13:29:06.907Z" title="更新于 2022-10-06 21:29:06">2022-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TBT/">TBT</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TBT/%E7%BF%BB%E8%AF%91/">翻译</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="What is Total Blocking Time（TBT)什么是总阻塞时间"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="./images/image-20221006195219227.png" alt="image-20221006195219227"></p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.328888.xyz/2022/09/23/Izm1h.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">幻冬狐`Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">What is Total Blocking Time（TBT)什么是总阻塞时间</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-06T13:22:38.000Z" title="发表于 2022-10-06 21:22:38">2022-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-07T01:12:58.209Z" title="更新于 2022-10-07 09:12:58">2022-10-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TBT/">TBT</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/TBT/%E7%BF%BB%E8%AF%91/">翻译</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="What is Total Blocking Time（TBT)什么是总阻塞时间"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070905325.png" alt="image-20221006195219227"></p>
 <p>你是否曾发现自己在一个网站上，感觉它已经完成了加载，但当你点击任何元素时，它却有一段时间没有反应？你的第一个想法可能是网站坏了，也可能是你的网络连接问题。</p>
 <p>如果两者都不是原因，你刚刚经历的情况被称为 “<strong>总阻塞时间</strong>“。</p>
 <p>在谷歌最近的一次更新中，即Lighthouse V6，他们引入了总阻塞时间，作为第一CPU空闲的替代，以帮助作为衡量网站在页面加载期间对用户输入的响应能力的指标。</p>
 <p>在这篇文章中，我们将介绍所有你需要知道的关于总阻塞时间的信息，如何测量它，以及如何改善它。</p>
 <h2 id="什么是总阻塞时间（TBT）？"><a href="#什么是总阻塞时间（TBT）？" class="headerlink" title="什么是总阻塞时间（TBT）？"></a>什么是总阻塞时间（TBT）？</h2><p><strong>总阻塞时间（TBT）</strong>衡量的是在第一次绘制内容图（FCP）和互动时间（TTI）之间，主线程被阻塞的时间长到足以阻止输入响应的时间总量。简而言之，根据Lighthouse v.8，TBT衡量的是网页在加载过程中对用户输入没有反应的情况，占网站总性能的30%。</p>
-<p><img src="./images/image-20221006195253666.png" alt="image-20221006195253666"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070905913.png" alt="image-20221006195253666"></p>
 <p>当用户请求一个网站时，浏览器使用主线程来解析HTML，构建DOM，用CSS、Javascript执行每个元素的样式，以及其他使页面在用户视口呈现的基本任务。</p>
 <p>在任何时候，如果一个长任务发生，主线程就会被阻塞。当这种情况发生时，浏览器不能停止或中断该任务，而且在任务完成之前，对用户的输入不会有任何响应。  </p>
 <p>这种测量方法是通过找到在<strong>第一次有内容的绘画（FCP）</strong>和<strong>互动时间（TTI）</strong>之间的所有长任务的总和。</p>
 <h2 id="什么是长任务？"><a href="#什么是长任务？" class="headerlink" title="什么是长任务？"></a>什么是长任务？</h2><p>长任务是指浏览器主线程上所有超过50ms的任务。这是由于Javascript文件未能在50ms的时间框架内完全执行—因此，停止了你的网站元素对用户输入的响应能力。</p>
 <p>一个简单的例子是这个浏览器的加载事件的主线程。</p>
-<p><img src="https://edgemesh.com/5e3d3268a134a79339be8368/614e2ded1e0000a06ff06f9a_h_Zo5mzdOUMyKDQ7X35YfAnZxZPfj1RstMCKeZxlymOJ3NXZZpUY8s6U-VTq4KiBPTgpZoDYYFTmXwqe6myfbNaQzNTpfFmMaIDKdrCrCDJIB2JOc4fjpfrT4pVUVzOd3tjAZuc7=s0.png?em-origin=assets-global.website-files.com&amp;em-format=avif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070906111.png" alt="image-20221006212519970"></p>
 <p>在上面的加载事件中，有五个任务（任务1-5），其中三个（任务1、2和5）是长任务，因为它们超过了50ms。</p>
-<p><img src="./images/image-20221006195335766.png" alt="image-20221006195335766"></p>
-<p><img src="./images/image-20221006195403440.png" alt="image-20221006195403440"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070906575.png" alt="image-20221006195335766"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070906250.png" alt="image-20221006195403440"></p>
 <p>主线程上超过50ms的每个任务都是开始计算长任务的地方。因此，这个事件的加载时间总共是560ms-，其中345ms是总的阻塞时间。</p>
 <p>你网站的大部分功能和互动性（点击、单击和拖动）是由通过Javascript执行的事件处理程序驱动的。如果在你的网站加载过程中，一个元素呈现在用户的视口中，但还没有连接到它们各自的事件处理程序，那么这些元素就无法工作。</p>
 <p>一个实际的例子是，当你浏览一个网站时，按钮元素显示在你的视口中，但当你点击它时，它没有反应—因为使它发挥作用的代码还没有连接。任何导致这些事件处理程序没有在50毫秒内执行其任务的情况都会触发长任务。</p>
 <h5 id="为什么50ms是总阻塞时间的基本标志？"><a href="#为什么50ms是总阻塞时间的基本标志？" class="headerlink" title="为什么50ms是总阻塞时间的基本标志？"></a>为什么50ms是总阻塞时间的基本标志？</h5><p>50毫秒是TBT的基本标志，因为谷歌在浏览网页时依靠RAIL模型来获得良好的用户体验。RAIL是指响应动画空闲负载，其以用户为中心的性能模型提供了一个思考网络性能的结构。   </p>
-<p><img src="./images/image-20221006195518042.png" alt="image-20221006195518042"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070907453.png" alt="image-20221006195518042"></p>
 <p>RAIL的主要目标是使用户成为所有网络性能的焦点。这个模型根据请求和响应之间的时间差进一步分解了用户感知的性能。</p>
-<p><img src="./images/image-20221006200717124.png" alt="image-20221006200717124"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070907688.png" alt="image-20221006200717124"></p>
 <p>与任何更长的时间相比，50毫秒的响应时间给用户的感觉是瞬间的。</p>
-<p><img src="./images/image-20221006200818600.png" alt="image-20221006200818600"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070907305.png" alt="image-20221006200818600"></p>
 <p>根据任务的数量，RAIL模型假设，如果一个应用程序在推荐的50ms内执行工作，你必须考虑之前的任务可能占据的额外的50ms—只留下50ms给浏览器响应用户的输入。</p>
 <h3 id="总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？"><a href="#总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？" class="headerlink" title="总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？"></a>总阻塞时间（TBT）和交互时间（TTI）之间的关系是什么？</h3><p>许多人将TBT误认为是TTI，因为它们在衡量网络互动性方面密切相关。但是，即使它们做的是几乎相同的事情，它们仍然有很大的不同。</p>
 <p>互动时间（TTI）是指一个网页对用户来说完全互动所需的时间。对于任何网页来说，被认为是互动的，这意味着。</p>
@@ -178,7 +178,7 @@
 <li>为大多数可见的页面元素注册了事件处理程序</li>
 <li>页面在50ms内对用户的互动作出反应</li>
 </ul>
-<p><img src="./images/image-20221006201001398.png" alt="image-20221006201001398"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070907166.png" alt="image-20221006201001398"></p>
 <p>当一个网页还在加载中，而用户试图与该网页互动时，由于主线程忙于解析和渲染元素，所以会出现延迟。每一个延迟都意味着网站的互动性受到了影响—这就是TBT来衡量这些延迟对用户体验的影响的地方。</p>
 <h3 id="什么是好的总阻塞时间？"><a href="#什么是好的总阻塞时间？" class="headerlink" title="什么是好的总阻塞时间？"></a>什么是好的总阻塞时间？</h3><ul>
 <li>一个好的总阻塞时间是指任何低于300ms的时间。</li>
@@ -219,11 +219,11 @@
 <li>如果你使用的是Mac，使用这些组合-CMD + OPT + I</li>
 </ul>
 <p>如果你操作正确，你应该有这样的东西👇</p>
-<p><img src="./images/image-20221006201456613.png" alt="image-20221006201456613"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070907992.png" alt="image-20221006201456613"></p>
 <ul>
 <li>在chrome中访问性能标签的另一个更简单的方法是，右键单击你想跟踪的网页—然后向下滚动并点击 “检查”。</li>
 </ul>
-<p><img src="./images/image-20221006201638542.png" alt="image-20221006201638542"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908863.png" alt="image-20221006201638542"></p>
 <ul>
 <li>在你的chrome浏览器上打开后，进入标签顶部的性能部分。  </li>
 <li>如果你在打开这个标签后没有立即看到性能部分，点击”&gt;&gt;”图标，你会在下拉中看到它。</li>
@@ -236,53 +236,53 @@
 <ol>
 <li>重新加载当前页面，以获得基于新的加载事件和全新过程的新分析。你可以通过点击记录按钮或按下Ctrl + Shift + E来完成这个操作。</li>
 </ol>
-<p><img src="./images/image-20221006201904939.png" alt="image-20221006201904939"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908127.png" alt="image-20221006201904939"></p>
 <ul>
 <li>重新加载整个网站是衡量你的TBT和任何其他性能指标的最佳方式。</li>
 </ul>
 <p>点击重新加载按钮，以便该工具能够对你的网站进行剖析。下面是一个例子。</p>
-<p><img src="./images/image-20221006202008636.png" alt="image-20221006202008636"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908806.png" alt="image-20221006202008636"></p>
 <ul>
 <li>当该工具完成对你的网站的分析时，你会在屏幕上看到类似这样的东西。</li>
 </ul>
-<p><img src="./images/image-20221006202122837.png" alt="image-20221006202122837"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908057.png" alt="image-20221006202122837"></p>
 <ul>
 <li><p>一开始可能看起来很混乱，但不要惊慌—向下滚动并点击主要部分，以获得主线上活动的下拉列表。</p>
 </li>
 <li><p>主线程上有许多活动，但在 “主 “部分的正下方，你会看到发生的任务列表。</p>
 </li>
 </ul>
-<p><img src="./images/image-20221006202251251.png" alt="image-20221006202251251"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908217.png" alt="image-20221006202251251"></p>
 <ul>
 <li>寻找长任务可能很棘手，一系列的任务都发生在主线程上。</li>
 </ul>
 <p>幸运的是，ChromeDev工具将主线程上超过50毫秒的长任务用红色阴影标出，50毫秒以下的常规任务用灰灰色标出。</p>
 <p>-这是一个低于50毫秒的常规任务。</p>
-<p><img src="./images/image-20221006202418978.png" alt="image-20221006202418978"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908860.png" alt="image-20221006202418978"></p>
 <ul>
 <li>当你点击这项任务时，你会在下面得到一个总时间和自我时间的摘要</li>
 </ul>
-<p><img src="./images/image-20221006202518412.png" alt="image-20221006202518412"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908172.png" alt="image-20221006202518412"></p>
 <p>-这是个超过50ms的长任务。</p>
-<p><img src="./images/image-20221006202614042.png" alt="image-20221006202614042"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070908824.png" alt="image-20221006202614042"></p>
 <ul>
 <li>点击长的任务也会给你一个摘要，包括总时间和自我时间。</li>
 </ul>
-<p><img src="./images/image-20221006202702075.png" alt="image-20221006202702075"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070909818.png" alt="image-20221006202702075"></p>
 <ul>
 <li>对于每一项长任务，ChromeDev工具都会将其从最初的加载事件到用户视口中的最终渲染阶段全部汇总起来—所有这些都是你的总阻塞时间。</li>
 </ul>
 <p>你可以通过点击主要部分来隐藏下拉菜单，你的总阻塞时间将直接在摘要部分的下面。</p>
-<p><img src="./images/image-20221006202759784.png" alt="image-20221006202759784"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070909345.png" alt="image-20221006202759784"></p>
 <p>而这就是你需要知道的衡量你的总阻塞时间的全部内容。同时，你应该注意，在有些情况下，你的TBT记录了在FCP之前发生的长任务。</p>
 <p>在这种情况下，你应该忽略这样的长任务，因为TBT的测量只从First Contentful Paint开始，而不是之前。</p>
 <h2 id="如何提高总阻塞时间"><a href="#如何提高总阻塞时间" class="headerlink" title="如何提高总阻塞时间"></a>如何提高总阻塞时间</h2><p>主线程上的Javascript任务在执行前需要超过50ms的时间，这是导致TBT的主要原因。最好的解决办法是建立一个完全可用的网站，不依赖Javascript来运作。但就给用户提供最佳的用户体验和网站功能而言，这是不可能的。知道如何找到这些漫长的任务是解决方案的一半，解决它是另一半。下面是你今天可以用来改善你的TBT的四种方法。</p>
 <h3 id="1-尽量减少浏览器主线程的工作负荷"><a href="#1-尽量减少浏览器主线程的工作负荷" class="headerlink" title="1. 尽量减少浏览器主线程的工作负荷"></a>1. 尽量减少浏览器主线程的工作负荷</h3><p>浏览器的主线程是有关网页处理和渲染的一切发生的地方。例如，浏览器中的渲染器进程承载着主线程，使其能够将普通代码转化为允许用户进行交互的网页。</p>
 <p>这个过程是这样的。脚本评估 -样式和布局-渲染-解析HTML和CSS -脚本解析和编译-垃圾回收</p>
-<p><img src="./images/image-20221006202917067.png" alt="image-20221006202917067"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070909014.png" alt="image-20221006202917067"></p>
 <p>使用Lighthouse，你可以很容易地得到主线程上的工作负荷明细，知道哪里花费了更多的CPU时间来加载你的网站。</p>
 <p>你也可以在ChromeDev Tools中看到这一细分。</p>
-<p><img src="./images/image-20221006202959523.png" alt="image-20221006202959523"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070909228.png" alt="image-20221006202959523"></p>
 <p>有了这些结果，你可以很容易地了解到主线程上的哪个进程比它应该花费的时间更多，并对其进行优化。</p>
 <p>在我们的结果中，我们看到，脚本评估比它应该的要高。其他进程的情况也是如此。如果你发现自己处于这种情况，这里有一些方法，你可以用来修复每个进程。</p>
 <ol>
@@ -331,7 +331,7 @@
 <li>用measureMemory(.)监控你的网页的总内存使用情况</li>
 </ul>
 <h3 id="2-减少第三方代码的影响"><a href="#2-减少第三方代码的影响" class="headerlink" title="2.减少第三方代码的影响"></a>2.减少第三方代码的影响</h3><p>第三方代码是一个网站的外部部分，使其无缝运作。添加插件、整合社交媒体按钮或在网站上安装外部服务都会影响浏览器解析和渲染网站的主线。</p>
-<p><img src="./images/image-20221006203310939.png" alt="image-20221006203310939"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070909199.png" alt="image-20221006203310939"></p>
 <p>如果这些第三方代码没有完全针对你的网站进行优化，就会导致。</p>
 <ul>
 <li><p>用未经优化的iframes阻塞window.Onload事件</p>
@@ -342,7 +342,7 @@
 <p>因此，优化或减少你网站上的第三方代码是至关重要的。要做到这一点，你可以首先分析你网站上的所有第三方代码，并删除那些不影响你网站功能的代码。</p>
 <h3 id="3-保持请求数和传输大小的低水平"><a href="#3-保持请求数和传输大小的低水平" class="headerlink" title="3.保持请求数和传输大小的低水平"></a>3.保持请求数和传输大小的低水平</h3><p>你网站上的每个元素都有它的尺寸，所以当浏览器请求该元素时，它会获取所有的数据，包括尺寸，在显示给用户之前，从浏览器向下传输到服务器。</p>
 <p>如果从浏览器到主服务器的请求数量很高，每个元素的数据就会累积起来，使传输的大小超过主线程可以处理的程度。</p>
-<p><img src="./images/image-20221006203611756.png" alt="image-20221006203611756"></p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210070909218.png" alt="image-20221006203611756"></p>
 <p>由于Javascripts处理网站上的所有请求，Lighthouse建议优化你的代码，通过为你的页面资源设置性能预算来减少请求数和传输大小。你可以通过添加 budget.json 文件来做到这一点，以防止出现退步。</p>
 <h3 id="4-减少Javascript的执行时间"><a href="#4-减少Javascript的执行时间" class="headerlink" title="4.减少Javascript的执行时间"></a>4.减少Javascript的执行时间</h3><p>Javascript完成执行的时间是总阻塞时间的主要问题。减少Javascript的执行时间是指尽量减少编译、解析和执行Javascript文件的时间。</p>
 <p>如果你的Javascript加载速度没有那么快，就会给你的网站带来这些问题。</p>
