@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>累积布局偏移量Cumulative Layout Shift——CLS | 幻冬狐`Blog</title><meta name="keywords" content="性能优化,翻译,CLS"><meta name="author" content="幻冬狐"><meta name="copyright" content="幻冬狐"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="想象一下：你正在加载一个网站，它看起来已经准备好了。您单击博客特色图片来阅读文章，突然整个页面发生变化，因为刚刚加载了其他内容。然后您单击完全不同的东西并加载您从未想过的页面。如果您自己遇到过这个问题，您就会知道累积布局偏移 (CLS) 如何对网站的用户体验 (UX)产生负面影响。 Cumulative Layout Shift 是一个术语，表示页面在加载时的布局变化量，在本文中，我们将更深入地了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="累积布局偏移量Cumulative Layout Shift——CLS">
+<meta property="og:url" content="https://xuesenxu.github.io/posts/1f31908b.html">
+<meta property="og:site_name" content="幻冬狐&#96;Blog">
+<meta property="og:description" content="想象一下：你正在加载一个网站，它看起来已经准备好了。您单击博客特色图片来阅读文章，突然整个页面发生变化，因为刚刚加载了其他内容。然后您单击完全不同的东西并加载您从未想过的页面。如果您自己遇到过这个问题，您就会知道累积布局偏移 (CLS) 如何对网站的用户体验 (UX)产生负面影响。 Cumulative Layout Shift 是一个术语，表示页面在加载时的布局变化量，在本文中，我们将更深入地了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.328888.xyz/2022/09/23/Izm1h.jpg">
+<meta property="article:published_time" content="2022-10-08T02:53:05.000Z">
+<meta property="article:modified_time" content="2022-10-08T02:57:01.006Z">
+<meta property="article:author" content="幻冬狐">
+<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="翻译">
+<meta property="article:tag" content="CLS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.328888.xyz/2022/09/23/Izm1h.jpg"><link rel="shortcut icon" href="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="canonical" href="https://xuesenxu.github.io/posts/1f31908b"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#425aef"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/128.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/16.png"/><link rel="mask-icon" href="/img/siteicon/128.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '累积布局偏移量Cumulative Layout Shift——CLS',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-08 10:57:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="幻冬狐`Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.328888.xyz/2022/09/23/Izm1h.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">幻冬狐`Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/index.html"><i class="fa-fw fas fa-heart"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">累积布局偏移量Cumulative Layout Shift——CLS</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-08T02:53:05.000Z" title="发表于 2022-10-08 10:53:05">2022-10-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-08T02:57:01.006Z" title="更新于 2022-10-08 10:57:01">2022-10-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/CLS/">CLS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/CLS/%E7%BF%BB%E8%AF%91/">翻译</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="累积布局偏移量Cumulative Layout Shift——CLS"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>想象一下：你正在加载一个网站，它看起来已经准备好了。您单击博客特色图片来阅读文章，突然整个页面发生变化，因为刚刚加载了其他内容。然后您单击完全不同的东西并加载您从未想过的页面。如果您自己遇到过这个问题，您就会知道累积布局偏移 (CLS) 如何对网站的<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/design/best-ui-ux-design-courses-and-bootcamps">用户体验 (UX)</a>产生负面影响。</p>
+<p>Cumulative Layout Shift 是一个术语，表示页面在加载时的布局变化量，在本文中，我们将更深入地了解它的含义。我们将向您展示如何衡量 CLS，并解释什么是好的分数。然后我们将讨论如何优化您网站的 CLS 分数。</p>
+<h2 id="什么是累积布局偏移-CLS-？"><a href="#什么是累积布局偏移-CLS-？" class="headerlink" title="什么是累积布局偏移 (CLS)？"></a>什么是累积布局偏移 (CLS)？</h2><p>没有比使用视觉示例更好的方式来说明高 CLS 分数（意思是 Google 的<a target="_blank" rel="noopener" href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights中超过 0.10 的分数）代表什么。</a>这是一个布局随着页面加载而不断变化的网站。请注意，我们在捕获它时根本没有滚动。我们的视口保持不变，但页面会自行发生巨大变化：</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/cls-example.gif" alt="具有高 CLS 的网站示例"></p>
+<p>作为访问该网站的用户，您可能不确定它何时真正完成加载。您可能会尝试单击新闻报道，但布局会发生巨大变化。结果，您最终进入了错误的页面，并且您不得不浪费时间返回。根据页面的不同，这可能会发生多次。如果是这样，你很可能会离开。</p>
+<p>您的用户也将如此。</p>
+<p>网站越复杂，CLS 得分越高。对于标志性的 Google 主页等简单布局，没有 CLS，因为它们包含的元素很少：</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/202210081033690.gif" alt="dd"></p>
+<p>这并不是说所有复杂网站的 CLS 分数都很高。以亚马逊为例。没有人会说这家电子商务巨头使用简单的网页设计。然而，在浏览其目录时几乎看不到布局变化。</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/amazon-cls-example.gif" alt="在亚马逊测试 CLS"></p>
+<p>发生布局变化是因为浏览器倾向于异步加载页面元素。更重要的是，您的页面上可能存在最初未知尺寸的媒体元素。这种组合意味着浏览器在加载完成之前不知道各个元素将占用多少空间。因此，布局发生了剧烈的转变。</p>
+<p>CLS 的有趣之处在于它可以使用各种工具进行客观测量，但它也是以用户为中心的，因为每个用户的设备都会影响站点布局的变化方式。虽然您无法控制这方面，但您当然可以采取预防措施，使其影响最小。</p>
+<p>CLS 是 Google 衡量的三个<a target="_blank" rel="noopener" href="https://web.dev/vitals/">核心 Web Vitals</a>之一，以帮助它确定您的网站是否提供强大的用户体验 (UX)。其他 Core Web Vitals 是<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/wordpress/first-input-delay-fid-what-it-is-how-to-optimize-your-website-for-it">First Input Delay (FID)</a>和<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/wordpress/lcp">Largest Contentful Paint (LCP)</a>，它们也绝对值得您花任何精力进行优化。</p>
+<h2 id="如何测量-CLS"><a href="#如何测量-CLS" class="headerlink" title="如何测量 CLS"></a>如何测量 CLS</h2><p>要优化 CLS，您需要了解导致变化的原因。 </p>
+<p>有两种方法可以查看确切的变化：</p>
+<ul>
+<li>在 Lighthouse 的绩效审计中使用名为“避免大的布局变化”的特别建议</li>
+<li>使用跟踪</li>
+</ul>
+<p>在这两种变体中，如果您通过 Lighthouse 启动性能审计会很容易。 </p>
+<p>要打开 Lighthouse，请右键单击网页上的任意位置并选择检查。</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/l7zgIScUGcN0w1xGc5cF2YZ8Nf-BARHxANcG7JtZcsV1YkxxvaQh0l_vkBFzCvn-1unR4YWj61zOTl0g8svdJ33OG8b4EhqnamdOFEZJtW6A1R8BOEwRkUMSt-Au7qnwLbofp60V.png" alt="l7zgIScUGcN0w1xGc5cF2YZ8Nf-BARHxANcG7JtZcsV1YkxxvaQh0l_vkBFzCvn-1unR4YWj61zOTl0g8svdJ33OG8b4EhqnamdOFEZJtW6A1R8BOEwRkUMSt-Au7qnwLbofp60V"></p>
+<h3 id="避免大的布局转变"><a href="#避免大的布局转变" class="headerlink" title="避免大的布局转变"></a>避免大的布局转变</h3><p>找到并打开建议“避免大的布局变化”。如果在加载过程中至少有一个任务轮班，它可以在 Lighthouse 性能审计中使用。只需向下滚动即可找到它。</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/CSH2Jg66Jf1X14KN-P4qY2MnjEkyvpmwdotcurQ5X9zBTaZXeANVUA3k-IgnmsTp_lZgpMQs8GewJJdDCP7_jXxSvzG7elOOYsgZK8tlFxXhd0j6lArRuDu4dCIBMucPn99waV6B.png" alt="CSH2Jg66Jf1X14KN-P4qY2MnjEkyvpmwdotcurQ5X9zBTaZXeANVUA3k-IgnmsTp_lZgpMQs8GewJJdDCP7_jXxSvzG7elOOYsgZK8tlFxXhd0j6lArRuDu4dCIBMucPn99waV6B"></p>
+<p>如果您展开该项目，您可以检查每个元素的“CLS 贡献”。</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/BnQgYJGJX0gYbi4FxQ4ys0L8vXC9jRAkL_Y_SGt8d3L9s5iPLsYRwmwswO5n3uXSsRX62YJGaLYS3ZUoF5T5wCURdUCFcs_i364tOCbpmxTdWTrN3O8sZ2rfVryyHeW8kUAJMwsQ.png" alt="BnQgYJGJX0gYbi4FxQ4ys0L8vXC9jRAkL_Y_SGt8d3L9s5iPLsYRwmwswO5n3uXSsRX62YJGaLYS3ZUoF5T5wCURdUCFcs_i364tOCbpmxTdWTrN3O8sZ2rfVryyHeW8kUAJMwsQ"></p>
+<p>例如，如果您看到 CLS 贡献为 0.001 的元素，请不要担心，因为它不会真正损害用户体验。 </p>
+<p>我们知道，Google 会将总偏移量不超过 0.010 的页面标记为“好”页面。</p>
+<h3 id="查看原始轨迹"><a href="#查看原始轨迹" class="headerlink" title="查看原始轨迹"></a>查看原始轨迹</h3><p>要找出页面的哪个部分在时间轴中发生了变化，您可以在 Lighthouse 中查看原始轨迹。</p>
+<p>首先，单击 Lighthouse 报告中的 View Original Trace。这将打开性能选项卡。</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/FOsRMvK5MiuvOYYVLcsVPUWK8e1hmvgBxG2u3kjWbeWpKy6a6E2RfqeR9tw2kuAjo9_w00EfmbKW1q8COEZwgiWoleHi_OxqGystAIGd3J2XAqtAowtuIfnFY36hY8WNrgWVk0zs.png" alt="FOsRMvK5MiuvOYYVLcsVPUWK8e1hmvgBxG2u3kjWbeWpKy6a6E2RfqeR9tw2kuAjo9_w00EfmbKW1q8COEZwgiWoleHi_OxqGystAIGd3J2XAqtAowtuIfnFY36hY8WNrgWVk0zs"></p>
+<p>查看“体验”轨道或“Web Vitals”轨道，了解这些转变发生的时间。 </p>
+<p>放大并查找布局变化 (LS) 以查看页面的哪些部分在加载过程中进行了这些变化。</p>
+<p><img src="https://raw.githubusercontent.com/XuesenXu/articleImage/main/zHqJ_mw6wOOcplil7cS53cBz6MIRgwv-b6jbn-Lea3ifdKo-e4swIwRr6M5VUkFb4ZbgJ2cvUxixhVfjeuFBgeOB9icqZfGDaLrsAZcFpR5-UIXkRNQvzdZCiB_DKCbdAxjr4Tio.png" alt="zHqJ_mw6wOOcpli7cS53cBz6MIRgwv-b6jbn-Lea3ifdKo-e4swIwRr6M5VUkFb4ZbgJ2cvUxixhVfjeuFBgeOB9icqZfGDaLrsAZcFpR5-UIXkRNQvzdZCiB_DKCbdAxjr4Tio"></p>
+<h2 id="如何优化您的-CLS-分数"><a href="#如何优化您的-CLS-分数" class="headerlink" title="如何优化您的 CLS 分数"></a>如何优化您的 CLS 分数</h2><p>总的来说，CLS 得分高有两大罪魁祸首：媒体文件和广告。例如，如果您上传了一个高分辨率的图像文件，但没有<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/divi-resources/using-divis-new-height-width-options-to-create-responsive-design">指定其高度和宽度</a>，则很可能会破坏您的页面布局。</p>
+<p>在网站性能方面，最好使用已经是您将要显示的精确尺寸的图像。这样，浏览器就不必花费处理能力（和时间）来适当地调整它们的大小。然而，这并不总是可能的。如果不是，您应该为您显示的每个图像设置<strong>宽度和高度属性。</strong>这样，用户的浏览器将准确地知道图像适合的位置，并且不需要在最后一秒改变布局。</p>
+<p>以下是这些属性在 HTML 中的外观：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;img src=<span class="string">&quot;http://imageurl.com&quot;</span> width=<span class="string">&quot;120&quot;</span> height=<span class="string">&quot;90&quot;</span> alt=<span class="string">&quot;Image Alt Text&quot;</span>&amp;gt;</span><br></pre></td></tr></table></figure>
+<p>如果您使用的是 WordPress，一些<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/wordpress/wordpress-image-optimization-plugins">图像优化插件</a>可以在您上传文件时自动调整文件大小，从而设置必要的宽度和高度属性。</p>
+<p>对于<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/design/best-responsive-website-design-testing-tools-and-sites">响应式图像</a>，您可以依赖 CSS 而不是手动声明宽度和高度。CSS 使您能够使用 <em>max-width</em> 属性来告诉浏览器图像应该占据视口的百分比：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img &#123;</span><br><span class="line">  max-width: 90vw;</span><br><span class="line">  height: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在此示例中，我们告诉浏览器缩放图像，使其占据用户视口的 90%。同时，我们将<em>height</em> 属性设置为 <em>auto</em>，以便浏览器根据图像的新宽度和长宽比计算出理想的高度。</p>
+<p>相同的基本原理适用于广告和图像。通常，您将<a target="_blank" rel="noopener" href="https://www.elegantthemes.com/blog/wordpress/what-is-an-iframe-and-how-to-use-them">使用 iframe</a>，有时广告网络会使用动态大小的元素。这可能会对您的页面布局造成严重破坏。</p>
+<p>您可以为它们保留区域，而不是让广告网络决定广告在您的网站上的大小。这意味着为广告区域声明宽度和高度属性并<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/fallback">设置后备</a>以防它们不加载，因此空白空间不会导致布局偏移。</p>
+<p>您可以对任何您想要的广告容器使用相同类型的 CSS 和内联样式，无论投放什么广告，都可以将其锁定在适当的位置。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://XuesenXu.github.io">幻冬狐</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xuesenxu.github.io/posts/1f31908b.html">https://xuesenxu.github.io/posts/1f31908b.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://XuesenXu.github.io" target="_blank">幻冬狐`Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a><a class="post-meta__tags" href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a><a class="post-meta__tags" href="/tags/CLS/">CLS</a></div><div class="post_share"><div class="social-share" data-image="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" src="/img/weixin.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/f0f46ff0.html"><img class="next-cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Largest Contentful Paint最大内容绘制（LCP）——译</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/83df7274.html" title="First Contentful Paint(首次内容绘制)——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-05</div><div class="title">First Contentful Paint(首次内容绘制)——译</div></div></a></div><div><a href="/posts/f0f46ff0.html" title="Largest Contentful Paint最大内容绘制（LCP）——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-07</div><div class="title">Largest Contentful Paint最大内容绘制（LCP）——译</div></div></a></div><div><a href="/posts/c6e11bb0.html" title="Total Blocking Time(总阻塞时间)——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-06</div><div class="title">Total Blocking Time(总阻塞时间)——译</div></div></a></div><div><a href="/posts/c0b11299.html" title="What is Total Blocking Time（TBT)什么是总阻塞时间"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-06</div><div class="title">What is Total Blocking Time（TBT)什么是总阻塞时间</div></div></a></div><div><a href="/posts/4ed9c2ca.html" title="优化 Largest Contentful Paint 最大内容绘制——译"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-07</div><div class="title">优化 Largest Contentful Paint 最大内容绘制——译</div></div></a></div><div><a href="/posts/ad091488.html" title="速度指数(Speed Index)：它是什么以及如何为此优化您的网站"><img class="cover" src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-06</div><div class="title">速度指数(Speed Index)：它是什么以及如何为此优化您的网站</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s1.328888.xyz/2022/09/23/IyZB7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">幻冬狐</div><div class="author-info__description">技术笔记、总结、分享</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XuesenXu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/XuesenXu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/XuesenXu@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_45566730" target="_blank" title="Blog"><i class="fas fa-blog"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B4%AF%E7%A7%AF%E5%B8%83%E5%B1%80%E5%81%8F%E7%A7%BB-CLS-%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是累积布局偏移 (CLS)？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B5%8B%E9%87%8F-CLS"><span class="toc-number">2.</span> <span class="toc-text">如何测量 CLS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%A4%A7%E7%9A%84%E5%B8%83%E5%B1%80%E8%BD%AC%E5%8F%98"><span class="toc-number">2.1.</span> <span class="toc-text">避免大的布局转变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8E%9F%E5%A7%8B%E8%BD%A8%E8%BF%B9"><span class="toc-number">2.2.</span> <span class="toc-text">查看原始轨迹</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%82%A8%E7%9A%84-CLS-%E5%88%86%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">如何优化您的 CLS 分数</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/1f31908b.html" title="累积布局偏移量Cumulative Layout Shift——CLS"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="累积布局偏移量Cumulative Layout Shift——CLS"/></a><div class="content"><a class="title" href="/posts/1f31908b.html" title="累积布局偏移量Cumulative Layout Shift——CLS">累积布局偏移量Cumulative Layout Shift——CLS</a><time datetime="2022-10-08T02:53:05.000Z" title="发表于 2022-10-08 10:53:05">2022-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f0f46ff0.html" title="Largest Contentful Paint最大内容绘制（LCP）——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Largest Contentful Paint最大内容绘制（LCP）——译"/></a><div class="content"><a class="title" href="/posts/f0f46ff0.html" title="Largest Contentful Paint最大内容绘制（LCP）——译">Largest Contentful Paint最大内容绘制（LCP）——译</a><time datetime="2022-10-07T12:15:55.000Z" title="发表于 2022-10-07 20:15:55">2022-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4ed9c2ca.html" title="优化 Largest Contentful Paint 最大内容绘制——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="优化 Largest Contentful Paint 最大内容绘制——译"/></a><div class="content"><a class="title" href="/posts/4ed9c2ca.html" title="优化 Largest Contentful Paint 最大内容绘制——译">优化 Largest Contentful Paint 最大内容绘制——译</a><time datetime="2022-10-07T08:06:55.000Z" title="发表于 2022-10-07 16:06:55">2022-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c0b11299.html" title="What is Total Blocking Time（TBT)什么是总阻塞时间"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="What is Total Blocking Time（TBT)什么是总阻塞时间"/></a><div class="content"><a class="title" href="/posts/c0b11299.html" title="What is Total Blocking Time（TBT)什么是总阻塞时间">What is Total Blocking Time（TBT)什么是总阻塞时间</a><time datetime="2022-10-06T13:22:38.000Z" title="发表于 2022-10-06 21:22:38">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c6e11bb0.html" title="Total Blocking Time(总阻塞时间)——译"><img src="https://s1.328888.xyz/2022/09/23/Izm1h.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Total Blocking Time(总阻塞时间)——译"/></a><div class="content"><a class="title" href="/posts/c6e11bb0.html" title="Total Blocking Time(总阻塞时间)——译">Total Blocking Time(总阻塞时间)——译</a><time datetime="2022-10-06T13:14:33.000Z" title="发表于 2022-10-06 21:14:33">2022-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 幻冬狐</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://xuesenxu.github.io/posts/1f31908b.html'
+    this.page.identifier = '/posts/1f31908b.html'
+    this.page.title = '累积布局偏移量Cumulative Layout Shift——CLS'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><div class="aplayer no-destory" data-id="7333814764" data-server="tencent" data-type="playlist" data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 有新文章啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍗点击食用🍔</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 有新文章啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍗点击食用🍔',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#425aef' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = '25092b1f269d44758d6f060cf87a647c';
+  var gaud_map_key = '56cc48a76c5b62df4a89fed6ff846ba6';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script async src="/js/ali_font.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '30');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('article-sort-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__slideInRight');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
